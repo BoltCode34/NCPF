@@ -35,6 +35,7 @@ Architecture
 
 See ARCHITECTURE.md for the assembly layout, layer rules, and where each piece of the pipeline lives.
 I also use https://github.com/gregoryneal/ClothoidX to solve the G1 problem and describe the curvate function.
+
 Status
 
 (work in progress — add build/version/license badges here once decided)
