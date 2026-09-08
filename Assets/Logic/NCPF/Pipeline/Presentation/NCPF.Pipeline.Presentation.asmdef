@@ -1,0 +1,19 @@
+{
+    "name": "NCPF.Pipeline.Presentation",
+    "rootNamespace": "NCPF.Pipeline.Presentation",
+    "references": [
+        "GUID:e3de715cdaec4f8091d561008be3da0e",
+        "GUID:ec9683c112a7464aad093a5f21ad2647",
+        "GUID:d8a6535596074cceade4c5bad784ab30",
+        "GUID:a3a5fd60cec26b544880ec2207524603"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

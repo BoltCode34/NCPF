@@ -1,0 +1,17 @@
+{
+    "name": "NCPF.Pipeline.Application",
+    "rootNamespace": "NCPF.Pipeline.Application",
+    "references": [
+        "GUID:ec9683c112a7464aad093a5f21ad2647",
+        "GUID:bbca91614cfcae7489435bb564528e13"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

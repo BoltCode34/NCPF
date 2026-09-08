@@ -1,0 +1,19 @@
+{
+    "name": "NCPF.Pipeline.Editor",
+    "rootNamespace": "NCPF.Pipeline.Editor",
+    "references": [
+        "GUID:5c7e22a9bbfa4b5b8f5454910d4915cd",
+        "GUID:e3de715cdaec4f8091d561008be3da0e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

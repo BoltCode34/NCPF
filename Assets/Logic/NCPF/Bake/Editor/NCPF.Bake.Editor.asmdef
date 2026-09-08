@@ -1,0 +1,22 @@
+{
+    "name": "NCPF.Bake.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:31c518c2444a40a48a922cc67cff38ae",
+        "GUID:4471d7008caf46778e5f1ad78dacad92",
+        "GUID:ec9683c112a7464aad093a5f21ad2647",
+        "GUID:d8a6535596074cceade4c5bad784ab30",
+        "GUID:bbca91614cfcae7489435bb564528e13"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

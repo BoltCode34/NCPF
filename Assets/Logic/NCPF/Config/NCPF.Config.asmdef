@@ -1,0 +1,17 @@
+{
+    "name": "NCPF.Config",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ec9683c112a7464aad093a5f21ad2647",
+        "GUID:d8a6535596074cceade4c5bad784ab30"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

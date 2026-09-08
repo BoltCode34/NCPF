@@ -1,0 +1,19 @@
+{
+    "name": "Core.Shared",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bbca91614cfcae7489435bb564528e13",
+        "GUID:aca0c6b8baefc4442a128a280c3202a8",
+        "GUID:1e544c85ca171104fadb9abb808c8220",
+        "GUID:21b0c8d1703a94250bfac916590cea4f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

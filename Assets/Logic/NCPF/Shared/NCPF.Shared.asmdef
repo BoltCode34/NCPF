@@ -1,0 +1,17 @@
+{
+    "name": "NCPF.Shared",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ec9683c112a7464aad093a5f21ad2647",
+        "GUID:11b6751272e61f0459aded096cbc2fce"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
