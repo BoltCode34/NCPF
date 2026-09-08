@@ -29,11 +29,12 @@ Screenshots
 
 <img width="434" height="386" alt="image" src="https://github.com/user-attachments/assets/a766f39a-4ef0-4751-9b30-49487334ed2f" />
 
+<img width="750" height="352" alt="image" src="https://github.com/user-attachments/assets/35691fb9-0272-4354-a823-47776170857b" />
 
 Architecture
 
 See ARCHITECTURE.md for the assembly layout, layer rules, and where each piece of the pipeline lives.
-
+I also use https://github.com/gregoryneal/ClothoidX to solve the G1 problem and describe the curvate function.
 Status
 
 (work in progress — add build/version/license badges here once decided)
