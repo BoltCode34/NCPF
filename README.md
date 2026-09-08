@@ -39,6 +39,8 @@ I also use https://github.com/gregoryneal/ClothoidX to solve the G1 problem and 
 Status
 
 (work in progress — add build/version/license badges here once decided)
+
 Warning
-if you get divide by xero exeption
-Pls execute on scene NCPFMap -> NCPFMapBuilder->Build(in context menu)
+
+if you get divide by zero exeption
+Pls execute on scene NCPFMap -> NCPFMapBuilder->Build(in context menu) to generate map
