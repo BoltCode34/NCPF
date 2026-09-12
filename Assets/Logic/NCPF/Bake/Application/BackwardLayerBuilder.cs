@@ -15,10 +15,10 @@ namespace NCPF.Bake.Application
         private readonly ILayerControlSetBuilder _decoratee;
         private readonly RearFirstLayerBuilder _backward;
 
-        public BackwardLayerBuilder(ILayerControlSetBuilder decoratee, IPathLimiter limiter)
+        public BackwardLayerBuilder(ILayerControlSetBuilder decoratee, IPathLimiter limiter, IPathBuilder rearPathBuilder)
         {
             _decoratee = decoratee;
-            _backward = new RearFirstLayerBuilder(limiter);
+            _backward = new RearFirstLayerBuilder(limiter, rearPathBuilder);
         }
 
         public IPath[] BuildLayer(IGridGeometry3D gridSpace, int maxCell, WorldConfig origin)

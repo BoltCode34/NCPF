@@ -11,13 +11,16 @@ namespace NCPF.Pipeline.Application
         public PathAgentModel Model;
         public DynamicAgent DynamicAgent;
 
-        public IAsyncGoalPathFinder<CurvateTransition> AsyncPathFinder;
-        public IGoalPathFinder<CurvateTransition> PathFinder;
+        public IAsyncGoalPathFinder<TransitionData> AsyncPathFinder;
+        public IGoalPathFinder<TransitionData> PathFinder;
         public IGridMap3D Grid;
         public ICurvateGraph Graph;
         public ITarget Target;
 
-        public PathAgentContext(PathAgentModel model, DynamicAgent dynamicAgent, IAsyncGoalPathFinder<CurvateTransition> asyncPathFinder, IGoalPathFinder<CurvateTransition> pathFinder, IGridMap3D grid, ICurvateGraph graph, ITarget target)
+        /// <summary>Resolves searched ids back into curves — the search side carries no geometry.</summary>
+        public PlanGeometry Geometry;
+
+        public PathAgentContext(PathAgentModel model, DynamicAgent dynamicAgent, IAsyncGoalPathFinder<TransitionData> asyncPathFinder, IGoalPathFinder<TransitionData> pathFinder, IGridMap3D grid, ICurvateGraph graph, ITarget target, PlanGeometry geometry)
         {
             Model = model;
             DynamicAgent = dynamicAgent;
@@ -26,6 +29,7 @@ namespace NCPF.Pipeline.Application
             Grid = grid;
             Graph = graph;
             Target = target;
+            Geometry = geometry;
         }
     }
 

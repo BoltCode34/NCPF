@@ -12,39 +12,40 @@ namespace NCPF.Domain
 
         public bool CanBeDivided(IGridGeometry3D space,
             HashSet<Config> states,
-            IPath path,
-            int quality);
+            IPath path);
     }
 
     /// <summary>
     /// Geometric limiter: length ratio plus path decomposition. The
-    /// equivalence tube derives from the GRID resolution (half a cell, half an
-    /// angle step by default) instead of hand-tuned absolute limits, and there
+    /// equivalence tube is two independent absolute limits — position in world
+    /// units, angle in degrees — instead of one grid-relative scale, and there
     /// is no kinematic check — feasibility w.r.t. speed is decided at search
     /// time.
     /// </summary>
     public class PathLimiterBase : IPathLimiter
     {
         private readonly float _breakDistance;
-        private readonly float _tubeScale;
+        private readonly float _positionTube;
+        private readonly float _angleTube;
         private readonly float _minTurnRadius;
 
-        public PathLimiterBase(float breakDistance = 1.4f, float tubeScale = 0.5f, float minTurnRadius = 0f)
+        public PathLimiterBase(float breakDistance = 1.4f, float positionTube = 0.25f, float angleTube = 10f, float minTurnRadius = 0f)
         {
             _breakDistance = breakDistance;
-            _tubeScale = Mathf.Clamp(tubeScale, 0.05f, 1f);
+            _positionTube = Mathf.Max(0f, positionTube);
+            _angleTube = Mathf.Max(0f, angleTube);
             _minTurnRadius = Mathf.Max(0f, minTurnRadius);
         }
 
-        protected float PositionTube(IGridGeometry3D space) => space.CellSize * _tubeScale;
-        protected float AngleTube(IGridGeometry3D space) => space.AngleStep * _tubeScale;
+        protected float PositionTube => _positionTube;
+        protected float AngleTube => _angleTube;
 
         public virtual bool TryAllowPath(IPath path, IGridGeometry3D gridSpace, HashSet<Config> states)
         {
             return path != null &&
                 CheckLength(path) &&
                 CheckTurnRadius(path) &&
-                !CanBeDivided(gridSpace, states, path, 100);
+                !CanBeDivided(gridSpace, states, path);
         }
 
         public virtual bool CheckLength(IPath path)
@@ -84,19 +85,25 @@ namespace NCPF.Domain
             return minRadius >= _minTurnRadius;
         }
 
+        /// <summary>
+        /// Sample density tracks path length against the position tube, not a
+        /// fixed count — a fixed sample count spaces samples farther apart as
+        /// primitives get longer, letting a long large-radius primitive thread
+        /// between two samples and slip past a captured node's tube undetected.
+        /// </summary>
         public virtual bool CanBeDivided(IGridGeometry3D space,
             HashSet<Config> states,
-            IPath path,
-            int quality)
+            IPath path)
         {
-            float posTube = PositionTube(space);
-            float angleTube = AngleTube(space);
-            float step = path.Length / quality;
+            float posTube = PositionTube;
+            float angleTube = AngleTube;
+            int samples = Mathf.Max(20, Mathf.CeilToInt(path.Length / Mathf.Max(posTube * 0.5f, 0.001f)));
+            float step = path.Length / samples;
 
             Config start = space.WorldToCell3D(path.Evaluate(0));
             Config end = space.WorldToCell3D(path.Evaluate(path.Length));
 
-            for (int i = 0; i <= quality; i++)
+            for (int i = 0; i <= samples; i++)
             {
                 WorldConfig sample = path.Evaluate(step * i);
                 Config cell = space.WorldToCell3D(sample);

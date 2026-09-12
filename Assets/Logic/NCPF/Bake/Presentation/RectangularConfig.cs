@@ -1,5 +1,5 @@
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using UnityEngine;
 
 namespace NCPF.Bake.Presentation

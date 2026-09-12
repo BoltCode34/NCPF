@@ -1,0 +1,32 @@
+title: Non-Circular Path Finding (NCPF)
+description: Advanced pathfinding system for Unity that specializes in finding dynamically feasible paths for objects with non-circular shapes.
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-sitemap
+markdown: kramdown
+highlighter: rouge
+
+# Custom configuration
+repository: your-username/NCPF
+logo: https://raw.githubusercontent.com/your-username/NCPF/main/docs/images/logo.png
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Getting Started
+    url: /getting-started
+  - title: Architecture
+    url: /architecture
+  - title: API Reference
+    url: /api/
+  - title: Examples
+    url: /examples/
+  - title: FAQ
+    url: /faq
+
+# Exclude
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

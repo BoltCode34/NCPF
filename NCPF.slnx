@@ -1,0 +1,13 @@
+﻿<Solution>
+  <Project Path="NCPF.Pipeline.Application.csproj" />
+  <Project Path="Core.Foundation.csproj" />
+  <Project Path="NCPF.Pipeline.Presentation.csproj" />
+  <Project Path="NCPF.Bake.Application.csproj" />
+  <Project Path="NCPF.Domain.csproj" />
+  <Project Path="NCPF.Bake.Editor.csproj" />
+  <Project Path="NCPF.Bake.Presentation.csproj" />
+  <Project Path="NCPF.Shared.Presentation.csproj" />
+  <Project Path="NCPF.Config.csproj" />
+  <Project Path="NCPF.Pipeline.Editor.csproj" />
+  <Project Path="Core.Shared.csproj" />
+</Solution>

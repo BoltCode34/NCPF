@@ -1,6 +1,6 @@
 using ClothoidX;
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using System;
 using System.Collections.Generic;
 using System.IO;

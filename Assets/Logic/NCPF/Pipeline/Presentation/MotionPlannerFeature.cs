@@ -35,6 +35,7 @@ namespace NCPF.Pipeline.Presentation
             DynamicAgent a = context.DynamicAgent;
             return new MotionPlannerPass(
                 context.Model, context.Grid, context.Target,
+                new GoalPathFinderBase<DirectTransition>(),
                 a.MaxAngledVelocity, a.MaxLinearAcceleration, a.MaxVelocity,
                 a.MaxVelocity * Mathf.Clamp01(_slowSpeedFactor),
                 a.MaxVelocity * Mathf.Clamp01(_fastSpeedFactor),
@@ -56,13 +57,14 @@ namespace NCPF.Pipeline.Presentation
             private readonly int _speedCount, _maxSpan, _maxIters;
             private readonly float _angleWeight, _speedWeight, _travelBias;
             private readonly float _planInterval;
-            private readonly GoalPathFinderBase<DirectTransition> _finder = new GoalPathFinderBase<DirectTransition>();
+            private readonly IGoalPathFinder<DirectTransition> _finder;
 
             private float _lastPlanTime = float.NegativeInfinity;
             private float _planAngle, _planSpeed;
             private bool _hasPlan;
 
             public MotionPlannerPass(PathAgentModel model, IGridMap3D grid, ITarget target,
+                                     IGoalPathFinder<DirectTransition> finder,
                                      float wMax, float aMax, float vMax, float slow, float fast,
                                      float lookahead, float sampleStep, int speedCount, int maxSpan, int maxIters,
                                      float angleWeight, float speedWeight, float travelBias, float planInterval)
@@ -70,6 +72,7 @@ namespace NCPF.Pipeline.Presentation
                 _model = model;
                 _grid = grid;
                 _target = target;
+                _finder = finder;
                 _wMax = Mathf.Max(1f, wMax);
                 _aMax = Mathf.Max(0.001f, aMax);
                 _vMax = Mathf.Max(0.001f, vMax);

@@ -1,10 +1,9 @@
 using Core.Foundation;
-using NCPF.Bake.Presentation;
 using NCPF.Domain;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace NCPF.Bake.Presentation
+namespace NCPF.Shared.Presentation
 {
     public class SpacedMap2D : IGridMap2D
     {
@@ -123,7 +122,7 @@ namespace NCPF.Bake.Presentation
     }
 }
 
-namespace NCPF.Domain
+namespace NCPF.Shared.Presentation
 {
     public class Map2D : ISpacedGraph
     {
@@ -184,7 +183,7 @@ namespace NCPF.Domain
     }
 }
 
-namespace NCPF.Domain
+namespace NCPF.Shared.Presentation
 {
     public class Unity2DGrid : MonoBehaviour, IGridMap2D, ISpacedGraph
     {

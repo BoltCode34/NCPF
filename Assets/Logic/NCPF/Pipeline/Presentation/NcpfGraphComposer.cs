@@ -1,6 +1,6 @@
 using NCPF.Domain;
 using NCPF.Pipeline.Application;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 
 namespace NCPF.Pipeline.Presentation
 {
@@ -25,24 +25,30 @@ namespace NCPF.Pipeline.Presentation
             DiscretizedControlSet3D discretized =
                 new DiscretizedControlSet3DConverter().Create(map3D, shapes);
 
-            ICurvateGraph graph = new RearGearGraph(
-                new CurvateMap3D(
-                    map3D,
-                    new CurvateEdgeGenerator(
-                        new ControlSetValidator3D(new Projector3D(discretized)),
-                        discretized,
-                        config.DynamicAgent.Agent,
-                        config.CurvaturePenalty,
-                        config.BaseTimePenalty)),
-                config.RearGearPenalty);
+            PrimitivePassability passability = new PassabilityBaker().Bake(map3D, discretized);
 
-            IAsyncGoalPathFinder<CurvateTransition> asyncPathFinder =
+            ICurvateGraph graph = new CachedCurvateGraph(
+                new RearGearGraph(
+                    new CurvateMap3D(
+                        map3D,
+                        new PassabilityTransitionGenerator(
+                            discretized,
+                            passability,
+                            config.DynamicAgent.Agent,
+                            config.CurvaturePenalty,
+                            config.BaseTimePenalty)),
+                    discretized,
+                    config.RearGearPenalty));
+
+            PlanGeometry geometry = new PlanGeometry(discretized, map3D);
+
+            IAsyncGoalPathFinder<TransitionData> asyncPathFinder =
                 new EpsilonLadderFinder(new CurvateGoalPathFinder(), config.EpsilonLadder, config.AttemptBudget);
-            IGoalPathFinder<CurvateTransition> pathFinder = new CurvateGoalPathFinder();
+            IGoalPathFinder<TransitionData> pathFinder = new CurvateGoalPathFinder();
 
             PathAgentModel model = new PathAgentModel();
             PathAgentContext context = new PathAgentContext(
-                model, config.DynamicAgent.Agent, asyncPathFinder, pathFinder, map3D, graph, target);
+                model, config.DynamicAgent.Agent, asyncPathFinder, pathFinder, map3D, graph, target, geometry);
 
             _signature = config;
             _hasSignature = true;
@@ -72,7 +78,8 @@ namespace NCPF.Pipeline.Presentation
                 live.PathFinder,
                 live.Grid,
                 live.Graph,
-                live.Target);
+                live.Target,
+                live.Geometry);
 
         /// <summary>The inspector-side knobs and ports the planner was wired from this frame.</summary>
         public struct PlannerConfig

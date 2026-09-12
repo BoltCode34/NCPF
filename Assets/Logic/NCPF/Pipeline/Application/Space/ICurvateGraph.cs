@@ -10,18 +10,23 @@ namespace NCPF.Pipeline.Application
     /// may compute weights itself or delegate the handling (CurvateMap3D delegates it to its
     /// ITransitionGenerator).
     /// </summary>
-    public interface ICurvateGraph : IGraph<CurvateTransition>
+    public interface ICurvateGraph : IGraph<TransitionData>
     {
     }
 
-    /// <summary>Geometric edge: a shape (<see cref="DiscretizedPath3D"/>) reaching a 3D node.</summary>
+    /// <summary>
+    /// Geometric edge: a shape reaching a 3D node. The shape is an <see cref="IPath"/>, not a
+    /// <see cref="DiscretizedPath3D"/> — the cell sweep is a BAKE-time concern (collision) and the
+    /// search never reads it, so carrying it would mean copying an offset cell array per edge per
+    /// expansion and throwing it away unread.
+    /// </summary>
     public struct CurvateTransition : ITransition
     {
-        public DiscretizedPath3D Path;
+        public IPath Path;
         public int Neightbor { get; set; }
         public float Weight { get; set; }
 
-        public CurvateTransition(int neightbor, DiscretizedPath3D path, float weight)
+        public CurvateTransition(int neightbor, IPath path, float weight)
         {
             Neightbor = neightbor;
             Path = path;

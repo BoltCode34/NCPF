@@ -12,8 +12,8 @@ namespace NCPF.Bake.Application
     /// </summary>
     public class RearFirstLayerBuilder : LayerControlSetBuilderBase
     {
-        public RearFirstLayerBuilder(IPathLimiter limiter, int endHeadingSpread = 2)
-            : base(limiter, new RearFirstPathBuilder(), endHeadingSpread)
+        public RearFirstLayerBuilder(IPathLimiter limiter, IPathBuilder rearPathBuilder, int endHeadingSpread = 2)
+            : base(limiter, rearPathBuilder, endHeadingSpread)
         {
         }
 

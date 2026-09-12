@@ -1,7 +1,7 @@
 using NCPF.Domain;
 using UnityEngine;
 
-namespace NCPF.Shared
+namespace NCPF.Shared.Presentation
 {
     /// <summary>
     /// Asset port of the agent footprint: yields the collision <see cref="Agent"/>

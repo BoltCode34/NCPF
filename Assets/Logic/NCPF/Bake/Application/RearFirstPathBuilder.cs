@@ -15,14 +15,19 @@ namespace NCPF.Bake.Application
     /// </summary>
     public sealed class RearFirstPathBuilder : IPathBuilder
     {
-        private readonly ClothoidPathBuilder _forward = new ClothoidPathBuilder();
+        private readonly IPathBuilder _forward;
+
+        public RearFirstPathBuilder(IPathBuilder forward)
+        {
+            _forward = forward;
+        }
 
         public IPath Create(WorldConfig start, WorldConfig end)
         {
             WorldConfig tStart = new WorldConfig(start.Position, Mathf.Repeat(start.Angle + 180f, 360f));
             WorldConfig tEnd = new WorldConfig(end.Position, Mathf.Repeat(end.Angle + 180f, 360f));
 
-            return new RearFirstPath((ClothoidPath)_forward.Create(tStart, tEnd));
+            return new RearFirstPath((IPolynomialPath)_forward.Create(tStart, tEnd));
         }
     }
 }

@@ -1,6 +1,9 @@
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace NCPF.Bake.Presentation
 {
@@ -38,6 +41,10 @@ namespace NCPF.Bake.Presentation
             MapBuilder builder = new MapBuilder(new Map(field, _grid.CellSize), _agent.GetAgent(_grid.CellSize));
             Map3D map = builder.BuildMap(AngleStepCount);
             _map.Write(map);
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(_map);
+            AssetDatabase.SaveAssets();
+#endif
         }
     }
 }

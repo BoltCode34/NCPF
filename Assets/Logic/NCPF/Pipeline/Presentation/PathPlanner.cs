@@ -1,6 +1,6 @@
 using NCPF.Pipeline.Application;
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Shared.Extentions;
@@ -87,6 +87,10 @@ namespace NCPF.Pipeline.Presentation
         public TransformTarget Prey { get => _target; set => _target = value; }
         public PathAgentContext Context => _context;
 
+        /// <summary>The inspector-side knobs and ports, for an outside resolver to group planners by
+        /// before anything is built — the same struct the composer wires from.</summary>
+        public NcpfGraphComposer.PlannerConfig Config => BuildConfig();
+
         public float RearGearPenalty => _rearGearPenalty;
         public float CurvaturePenalty => _curvaturePenalty;
         public float BaseTimePenalty => _baseTimePenalty;
@@ -163,7 +167,7 @@ namespace NCPF.Pipeline.Presentation
             };
             PathFindingAgent search = new PathFindingAgent(
                 context.Grid, context.Graph, context.AsyncPathFinder, context.PathFinder,
-                goal, context.DynamicAgent, attemptBudget);
+                goal, context.DynamicAgent, context.Geometry, attemptBudget);
 
             _brain = new PathAgentPipeline(search, follower, context.Grid, context.Target, _replanInterval, seed);
             _container = new PathFeatureContainer(_standards);
@@ -242,7 +246,7 @@ namespace NCPF.Pipeline.Presentation
             int steps = Mathf.Max(1, _stepCount / path.Length);
             for (int i = 0; i < path.Length; i++)
             {
-                DiscretizedPath3D shape = path[i].Path;
+                IPath shape = path[i].Path;
                 float step = shape.Length / steps;
                 WorldConfig last = shape.Evaluate(0f);
                 for (int j = 1; j <= steps; j++)

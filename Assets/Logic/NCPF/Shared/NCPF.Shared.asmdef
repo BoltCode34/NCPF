@@ -1,9 +1,8 @@
 {
-    "name": "NCPF.Shared",
+    "name": "NCPF.Shared.Presentation",
     "rootNamespace": "",
     "references": [
-        "GUID:ec9683c112a7464aad093a5f21ad2647",
-        "GUID:11b6751272e61f0459aded096cbc2fce"
+        "GUID:ec9683c112a7464aad093a5f21ad2647"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

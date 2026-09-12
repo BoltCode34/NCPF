@@ -98,7 +98,7 @@ namespace NCPF.Bake.Application
             IPath path,
             WorldConfig origin)
         {
-            if (_limiter.CanBeDivided(gridSpace, _stateSet, path, 100))
+            if (_limiter.CanBeDivided(gridSpace, _stateSet, path))
             {
                 return;
             }

@@ -20,7 +20,7 @@ namespace NCPF.Pipeline.Application
             _generator = generator;
         }
 
-        public CurvateTransition[] GetNeightbors(int id) => _generator.GetPrimitives(_grid.IdToCell3D(id), _grid);
+        public TransitionData[] GetNeightbors(int id) => _generator.GetPrimitives(_grid.IdToCell3D(id), _grid);
 
         public bool PointFree(int id) => _grid.Cell3DFree(_grid.IdToCell3D(id));
     }

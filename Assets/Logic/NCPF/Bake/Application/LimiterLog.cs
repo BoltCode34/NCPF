@@ -16,7 +16,8 @@ namespace NCPF.Bake.Application
 
         public LimiterLog(IControlSetBuildLogger logger,
             float breakDistance = 1.4f,
-            float tubeScale = 0.5f) : base(breakDistance, tubeScale)
+            float positionTube = 0.25f,
+            float angleTube = 10f) : base(breakDistance, positionTube, angleTube)
         {
             _logger = logger;
             _log = new();
@@ -26,9 +27,9 @@ namespace NCPF.Bake.Application
         public override bool CanBeDivided(
             IGridGeometry3D space,
             HashSet<Config> states,
-            IPath path, int quality)
+            IPath path)
         {
-            bool res = base.CanBeDivided(space, states, path, quality);
+            bool res = base.CanBeDivided(space, states, path);
             if (!_canBeDividedChecked)
             {
                 _log.OtherInfo.CanBeDivided = res;
@@ -45,8 +46,8 @@ namespace NCPF.Bake.Application
         {
             bool res = base.TryAllowPath(path, gridSpace, states);
 
-            float posTube = PositionTube(gridSpace);
-            float angleTube = AngleTube(gridSpace);
+            float posTube = PositionTube;
+            float angleTube = AngleTube;
             float step = path.Length / 100f;
             float min = float.MaxValue;
             Config start = gridSpace.WorldToCell3D(path.Evaluate(0));

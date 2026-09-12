@@ -1,6 +1,6 @@
 using NCPF.Bake.Application;
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using UnityEngine;
 
 namespace NCPF.Bake.Presentation
@@ -20,18 +20,26 @@ namespace NCPF.Bake.Presentation
         [SerializeField] private int _angleLayer;
         [SerializeField] private float _maxRadius = 1;
         [SerializeField] private float _minTurnRadius = 0f;
-        [SerializeField, Range(0.05f, 0.5f)] private float _limitScale = 0.5f;
+        [SerializeField, Min(0f)] private float _positionTube = 0.25f;
+        [SerializeField, Min(0f)] private float _angleTube = 10f;
         [SerializeField, Min(1f)] private float _lengthMultiplier = 1.4f;
-        private ControlSetBakeService _bakeService = new ControlSetBakeService();
+        private ControlSetBakeService _bakeService;
         private ControlSet<IPath> _controlSet;
+
+        /// <summary>External DI seam: swap the bake service (and its <see cref="IPathBuilder"/>) before the first Bake call.</summary>
+        public void Construct(ControlSetBakeService bakeService)
+        {
+            _bakeService = bakeService;
+        }
 
         [ContextMenu("Bake")]
         public void Bake()
         {
             if (_mapContainer == null || _grid == null || _controlSetContainer == null) return;
+            if (_bakeService == null) _bakeService = new ControlSetBakeService(new ClothoidPathBuilder());
             _grid.Bake();
             SpacedMap3D map3D = new SpacedMap3D(_grid, _mapContainer.Read());
-            _controlSet = _bakeService.Bake(map3D, _maxRadius, _lengthMultiplier, _limitScale, _minTurnRadius);
+            _controlSet = _bakeService.Bake(map3D, _maxRadius, _lengthMultiplier, _positionTube, _angleTube, _minTurnRadius);
             _controlSetContainer.Write(_controlSet, map3D);
         }
 
@@ -39,9 +47,10 @@ namespace NCPF.Bake.Presentation
         public void BakeLayer()
         {
             if (_mapContainer == null || _grid == null || _controlSetContainer == null) return;
+            if (_bakeService == null) _bakeService = new ControlSetBakeService(new ClothoidPathBuilder());
             _grid.Bake();
             SpacedMap3D map3D = new SpacedMap3D(_grid, _mapContainer.Read());
-            IPath[] layer = _bakeService.BakeLayer(map3D, _angleLayer, _maxRadius, _lengthMultiplier, _limitScale, _minTurnRadius);
+            IPath[] layer = _bakeService.BakeLayer(map3D, _angleLayer, _maxRadius, _lengthMultiplier, _positionTube, _angleTube, _minTurnRadius);
             _controlSet = new ControlSet<IPath>();
             _controlSet.LoadLayer(_angleLayer, layer);
             _controlSetContainer.Write(_controlSet, map3D);
@@ -77,7 +86,7 @@ namespace NCPF.Bake.Presentation
                     start = point.Position;
                 }
                 Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(center.Position+ path.Evaluate(path.Length).Position, _grid.CellSize * _limitScale);
+                Gizmos.DrawWireSphere(center.Position+ path.Evaluate(path.Length).Position, _positionTube);
             }
         }
     }

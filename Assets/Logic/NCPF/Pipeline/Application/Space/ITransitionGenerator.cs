@@ -11,6 +11,6 @@ namespace NCPF.Pipeline.Application
     /// </summary>
     public interface ITransitionGenerator
     {
-        CurvateTransition[] GetPrimitives(Config startCell, IGridMap3D grid);
+        TransitionData[] GetPrimitives(Config startCell, IGridMap3D grid);
     }
 }

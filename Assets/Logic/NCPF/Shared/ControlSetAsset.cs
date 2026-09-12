@@ -1,7 +1,7 @@
 using NCPF.Domain;
 using UnityEngine;
 
-namespace NCPF.Shared
+namespace NCPF.Shared.Presentation
 {
     /// <summary>
     /// Storage port for a baked control set. Fields typed by this base accept any

@@ -17,13 +17,14 @@ namespace NCPF.Pipeline.Application
     {
         private IGridMap3D _map3D;
         private ICurvateGraph _graph;
-        private IAsyncGoalPathFinder<CurvateTransition> _pathFinder;
-        private IGoalPathFinder<CurvateTransition> _stitchFinder = new CurvateGoalPathFinder();
+        private IAsyncGoalPathFinder<TransitionData> _pathFinder;
+        private IGoalPathFinder<TransitionData> _stitchFinder;
         private IAsyncGoalBuilder _goalBuilder;
         private DynamicAgent _dynamicAgent;
+        private PlanGeometry _geometry;
         private int _attemptBudget = 400;
 
-        private IPathFindingTask<CurvateTransition> _pathBuildingTask;
+        private IPathFindingTask<TransitionData> _pathBuildingTask;
         private bool _goalBuilding;
         private int _generation;
         private const int StitchBudget = 200;
@@ -31,10 +32,11 @@ namespace NCPF.Pipeline.Application
         public PathFindingAgent
             (IGridMap3D map3D,
             ICurvateGraph graph,
-            IAsyncGoalPathFinder<CurvateTransition> pathFinder,
-            IGoalPathFinder<CurvateTransition> stitchFinder,
+            IAsyncGoalPathFinder<TransitionData> pathFinder,
+            IGoalPathFinder<TransitionData> stitchFinder,
             IAsyncGoalBuilder goalBuilder,
             DynamicAgent dynamicAgent,
+            PlanGeometry geometry,
             int attemptBudget)
         {
             _map3D = map3D;
@@ -43,6 +45,7 @@ namespace NCPF.Pipeline.Application
             _stitchFinder = stitchFinder;
             _goalBuilder = goalBuilder;
             _dynamicAgent = dynamicAgent;
+            _geometry = geometry;
             _attemptBudget = attemptBudget;
         }
 
@@ -56,9 +59,9 @@ namespace NCPF.Pipeline.Application
 
         public bool InProcess => _goalBuilding
             || (_pathBuildingTask != null
-                && _pathBuildingTask.State == IPathFindingTask<CurvateTransition>.TaskState.InProccess);
+                && _pathBuildingTask.State == IPathFindingTask<TransitionData>.TaskState.InProccess);
 
-        public CurvateTransition[] UnstitchedPath => _pathBuildingTask?.Result;
+        public CurvateTransition[] UnstitchedPath => _geometry.Resolve(_pathBuildingTask?.Result);
 
         /// <summary>
         /// Starts the search. The goal builds asynchronously; the flag is set synchronously BEFORE the
@@ -124,8 +127,9 @@ namespace NCPF.Pipeline.Application
         {
             if (!HasBufferedPath) return null;
 
-            CurvateTransition[] path = _pathBuildingTask.Result;
+            CurvateTransition[] path = _geometry.Resolve(_pathBuildingTask.Result);
             _pathBuildingTask = null;
+            if (path.Length == 0) return null;
 
             if (oldPath == null || oldPath.Length == 0) return path;
 
@@ -147,11 +151,11 @@ namespace NCPF.Pipeline.Application
             int cut = j + 1 < path.Length ? j + 1 : j;
             WorldConfig join = path[cut].Path.Start;
 
-            CurvateTransition[] stitch = _stitchFinder.FindPath(
+            CurvateTransition[] stitch = _geometry.Resolve(_stitchFinder.FindPath(
                 _graph,
                 _map3D.WorldToID(anchor.Position, anchor.Angle),
                 new StitchGoal3D(_map3D, join, _dynamicAgent.MaxVelocity),
-                StitchBudget);
+                StitchBudget));
 
             Config anchorCell = _map3D.WorldToCell3D(anchor);
             Config joinCell = _map3D.WorldToCell3D(join);

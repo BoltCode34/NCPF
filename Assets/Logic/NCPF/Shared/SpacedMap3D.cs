@@ -2,7 +2,7 @@ using Core.Foundation;
 using NCPF.Domain;
 using UnityEngine;
 
-namespace NCPF.Shared
+namespace NCPF.Shared.Presentation
 {
     /// <summary>
     /// Adapts a baked <see cref="Map3D"/> to the <see cref="IGridMap3D"/> contract:

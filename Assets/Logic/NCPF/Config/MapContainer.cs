@@ -1,6 +1,6 @@
 using Core.Foundation;
 using NCPF.Domain;
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using System;
 using UnityEngine;
 

@@ -13,7 +13,13 @@ namespace NCPF.Pipeline.Application
     /// NO in-place turn: the heading changes only by driving a curve. Analysis is immutable after
     /// the constructor — thread safety by contract, not by locks.
     /// </summary>
-    public class CurvateEdgeGenerator : ITransitionGenerator
+    /// <remarks>
+    /// SUPERSEDED by <see cref="PassabilityTransitionGenerator"/> and no longer an
+    /// <see cref="ITransitionGenerator"/>: that contract now yields <see cref="TransitionData"/>,
+    /// which names a primitive by id instead of carrying its shape. Kept as the reference
+    /// implementation of the projector-chain pricing.
+    /// </remarks>
+    public class CurvateEdgeGenerator
     {
         private const float EPS = 1e-3f;
         private const float KAPPA_EPS = 1e-6f;

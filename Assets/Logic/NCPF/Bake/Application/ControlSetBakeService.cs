@@ -11,16 +11,23 @@ namespace NCPF.Bake.Application
     /// </summary>
     public class ControlSetBakeService
     {
-        public ControlSet<IPath> Bake(IGridGeometry3D space, float maxRadius, float lengthMultiplier, float limitScale, float minTurnRadius)
+        private readonly IPathBuilder _pathBuilder;
+
+        public ControlSetBakeService(IPathBuilder pathBuilder)
         {
-            IPathLimiter limiter = new PathLimiterBase(lengthMultiplier, limitScale, minTurnRadius);
+            _pathBuilder = pathBuilder;
+        }
+
+        public ControlSet<IPath> Bake(IGridGeometry3D space, float maxRadius, float lengthMultiplier, float positionTube, float angleTube, float minTurnRadius)
+        {
+            IPathLimiter limiter = new PathLimiterBase(lengthMultiplier, positionTube, angleTube, minTurnRadius);
             IControlSetBuilder<IPath> builder = CreateControlSetBuilder(limiter);
             return builder.Create(space, maxRadius);
         }
 
-        public IPath[] BakeLayer(IGridGeometry3D space, int angleLayer, float maxRadius, float lengthMultiplier, float limitScale, float minTurnRadius)
+        public IPath[] BakeLayer(IGridGeometry3D space, int angleLayer, float maxRadius, float lengthMultiplier, float positionTube, float angleTube, float minTurnRadius)
         {
-            IPathLimiter limiter = new PathLimiterBase(lengthMultiplier, limitScale, minTurnRadius);
+            IPathLimiter limiter = new PathLimiterBase(lengthMultiplier, positionTube, angleTube, minTurnRadius);
             ILayerControlSetBuilder builder = CreateLayerBuilder(limiter);
             return builder.BuildLayer(
                 space,
@@ -41,9 +48,10 @@ namespace NCPF.Bake.Application
                 new LayerControlSetBuilderBase
                 (
                     limiter,
-                    new ClothoidPathBuilder()
+                    _pathBuilder
                 ),
-                limiter
+                limiter,
+                new RearFirstPathBuilder(_pathBuilder)
             );
         }
     }

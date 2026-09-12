@@ -30,6 +30,7 @@ namespace NCPF.Pipeline.Presentation
             DynamicAgent a = context.DynamicAgent;
             return new TravelPlannerPass(
                 context.Model,
+                new GoalPathFinderBase<DirectTransition>(),
                 a.MaxVelocity * Mathf.Clamp01(_targetSpeedFactor),
                 a.MaxVelocity, a.MaxLinearAcceleration, a.MaxAngledVelocity,
                 _lookahead, _speedSteps, _planInterval, _maxIterations, _speedStrive);
@@ -46,7 +47,7 @@ namespace NCPF.Pipeline.Presentation
             private readonly float _vTop, _vMax, _aMax, _wMax, _lookahead, _planInterval;
             private readonly int _speedSteps, _maxIters;
             private readonly float _speedStrive;
-            private readonly GoalPathFinderBase<DirectTransition> _finder = new GoalPathFinderBase<DirectTransition>();
+            private readonly IGoalPathFinder<DirectTransition> _finder;
 
             private float _lastPlanTime = float.NegativeInfinity;
             private float _planSpeed;
@@ -56,11 +57,13 @@ namespace NCPF.Pipeline.Presentation
 
             private float _clock;
 
-            public TravelPlannerPass(PathAgentModel model, float vTop, float vMax, float aMax,
+            public TravelPlannerPass(PathAgentModel model, IGoalPathFinder<DirectTransition> finder,
+                                     float vTop, float vMax, float aMax,
                                      float wMaxDegPerSec, float lookahead, int speedSteps,
                                      float planInterval, int maxIterations, float speedStrive = 0f)
             {
                 _model = model;
+                _finder = finder;
                 _vTop = Mathf.Max(0.001f, vTop);
                 _vMax = Mathf.Max(0.001f, vMax);
                 _aMax = Mathf.Max(0.001f, aMax);

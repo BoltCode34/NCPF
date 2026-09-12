@@ -9,13 +9,13 @@ namespace NCPF.Pipeline.Application
     /// <summary>One ε-ladder run in the background. Runs the goal through the eps rungs (wrapping
     /// each in <see cref="EpsGoal"/>) and returns the FIRST success. Lives on the thread pool; the
     /// caller polls <see cref="State"/>/<see cref="Result"/> or awaits.</summary>
-    public sealed class EpsilonLadderTask : IPathFindingTask<CurvateTransition>
+    public sealed class EpsilonLadderTask : IPathFindingTask<TransitionData>
     {
-        private readonly Task<CurvateTransition[]> _task;
+        private readonly Task<TransitionData[]> _task;
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
 
-        public EpsilonLadderTask(IGoalPathFinder<CurvateTransition> finder,
-                                    IGraph<CurvateTransition> graph,
+        public EpsilonLadderTask(IGoalPathFinder<TransitionData> finder,
+                                    IGraph<TransitionData> graph,
                                     IGoal goal,
                                     int startId,
                                     float[] ladder, int budget)
@@ -30,22 +30,22 @@ namespace NCPF.Pipeline.Application
                 {
                     IGoal epsGoal = new EpsGoal(goal, eps);
                     if (token.IsCancellationRequested) break;
-                    CurvateTransition[] path = finder.FindPath(graph, startId, epsGoal, cap);
+                    TransitionData[] path = finder.FindPath(graph, startId, epsGoal, cap);
                     if (path != null && path.Length > 0)
                         return path;
                 }
-                return System.Array.Empty<CurvateTransition>();
+                return System.Array.Empty<TransitionData>();
             }, token);
         }
 
-        public IPathFindingTask<CurvateTransition>.TaskState State =>
-            _task.IsCanceled ? IPathFindingTask<CurvateTransition>.TaskState.Canceled :
-            _task.IsCompleted ? IPathFindingTask<CurvateTransition>.TaskState.Completed :
-            IPathFindingTask<CurvateTransition>.TaskState.InProccess;
+        public IPathFindingTask<TransitionData>.TaskState State =>
+            _task.IsCanceled ? IPathFindingTask<TransitionData>.TaskState.Canceled :
+            _task.IsCompleted ? IPathFindingTask<TransitionData>.TaskState.Completed :
+            IPathFindingTask<TransitionData>.TaskState.InProccess;
 
-        public CurvateTransition[] Result => _task.IsCompletedSuccessfully ? _task.Result : null;
+        public TransitionData[] Result => _task.IsCompletedSuccessfully ? _task.Result : null;
 
-        public TaskAwaiter<CurvateTransition[]> GetAwaiter() => _task.GetAwaiter();
+        public TaskAwaiter<TransitionData[]> GetAwaiter() => _task.GetAwaiter();
 
         public void Break() => _cts.Cancel();
     }

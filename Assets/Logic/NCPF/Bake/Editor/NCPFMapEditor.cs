@@ -1,4 +1,4 @@
-using NCPF.Shared;
+using NCPF.Shared.Presentation;
 using System;
 using System.Reflection;
 using UnityEditor;
@@ -9,7 +9,7 @@ using UnityEngine;
 /// layers rendered as a texture. Works through reflection over the concrete
 /// asset's fields, so no assembly references NCPF.Config.
 /// </summary>
-[CustomEditor(typeof(MapAsset))]
+[CustomEditor(typeof(MapAsset), true)]
 public class NCPFMapEditor : Editor
 {
     private int _viewLayerIndex = 0;
@@ -55,12 +55,12 @@ public class NCPFMapEditor : Editor
         EditorGUILayout.LabelField("Layers", layerCount.ToString());
         EditorGUILayout.LabelField("Angle Step", angleStep + "°");
 
-        int size = Mathf.RoundToInt(Mathf.Sqrt(firstLayerData.Length));
-
         FieldInfo sizeXField = assetType.GetField("SizeX", BindingFlags.Public | BindingFlags.Instance);
         FieldInfo sizeYField = assetType.GetField("SizeY", BindingFlags.Public | BindingFlags.Instance);
+        int sizeX = sizeXField != null ? (int)sizeXField.GetValue(target) : 0;
+        int sizeY = sizeYField != null ? (int)sizeYField.GetValue(target) : 0;
 
-        EditorGUILayout.LabelField("Layer Size", $"{sizeXField?.GetValue(target)} x {sizeYField?.GetValue(target)}");
+        EditorGUILayout.LabelField("Layer Size", $"{sizeX} x {sizeY}");
 
         _viewLayerIndex = EditorGUILayout.IntSlider(
             "View Layer",
@@ -69,30 +69,30 @@ public class NCPFMapEditor : Editor
             layerCount - 1
         );
 
-        DrawLayerPreview(layers.GetValue(_viewLayerIndex), layerDataField, layerAngleField, size);
+        DrawLayerPreview(layers.GetValue(_viewLayerIndex), layerDataField, layerAngleField, sizeX, sizeY);
 
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void DrawLayerPreview(object layer, FieldInfo layerDataField, FieldInfo layerAngleField, int size)
+    private void DrawLayerPreview(object layer, FieldInfo layerDataField, FieldInfo layerAngleField, int sizeX, int sizeY)
     {
         bool[] layerData = (bool[])layerDataField.GetValue(layer);
         if (layerData == null || layerData.Length == 0)
             return;
 
         if (_previewTexture == null ||
-            _previewTexture.width != size ||
-            _previewTexture.height != size)
+            _previewTexture.width != sizeX ||
+            _previewTexture.height != sizeY)
         {
-            _previewTexture = new Texture2D(size, size);
+            _previewTexture = new Texture2D(sizeX, sizeY);
             _previewTexture.filterMode = FilterMode.Point;
         }
 
-        for (int x = 0; x < size; x++)
+        for (int x = 0; x < sizeX; x++)
         {
-            for (int y = 0; y < size; y++)
+            for (int y = 0; y < sizeY; y++)
             {
-                bool occupied = layerData[x * size + y];
+                bool occupied = layerData[x * sizeY + y];
                 _previewTexture.SetPixel(
                     x,
                     y,
