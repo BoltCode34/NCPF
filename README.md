@@ -1,96 +1,46 @@
-# Non-Circular Path Finding (NCPF)
+NCPF — Non-Circular Path Finder
 
-Non-Circular Path Finding (NCPF) is a sophisticated pathfinding system designed for Unity that specializes in finding dynamically feasible paths for objects with non-circular (rectangular or irregular) shapes. Unlike traditional pathfinding algorithms that treat agents as simple circles or points, NCPF accounts for the actual geometry of objects, making it ideal for realistic vehicle navigation, robotics, and precise object placement.
+NCPF is a geometric path planner for agents that are non-holonomic (limited turning radius) and whose body shape can't be safely approximated by a bounding circle — drone-like or elongated bodies, anything where orientation actually changes what fits through a gap.
 
-## Overview
+Instead of planning on a raw occupancy grid and fixing up curvature afterward, NCPF bakes a control set of feasible motion primitives once per configuration cell, assembles it into a curvature-aware search graph, and plans directly over that graph. Every edge the planner can take is a path the agent can actually drive — there's no post-processing step trying to make a jagged grid path drivable.
 
-NCPF addresses the limitations of circular approximation in pathfinding by implementing a comprehensive system that considers the actual shape, orientation, and dynamics of moving objects. The system generates paths that are not only geometrically feasible but also dynamically achievable, ensuring that the planned trajectories can be executed by the physical systems they represent.
+Why this approach
 
-## Key Features
+Planning with holonomic assumptions (4- or 8-connected grids) and smoothing the result afterward tends to break down for vehicles with real turning constraints and non-circular footprints: the smoothing step can't always recover a feasible path, and collision checks against a circular proxy either miss corners or reject valid maneuvers.
 
-### Shape-Aware Pathfinding
-- **Non-circular collision detection**: Accounts for rectangular and irregular object geometries
-- **Orientation-aware planning**: Considers object heading at each point along the path
-- **3D configuration space**: Uses (x, y, θ) coordinates for precise positioning
+NCPF instead builds what's known in the literature as a state lattice: a discretized configuration space where connectivity is defined only by paths the vehicle can actually execute. A control set — a small, near-minimal set of motion primitives repeated at every node — keeps the branching factor of the search low while still preserving the ability to reconstruct any feasible path in the lattice through concatenation. This is the same idea explored in:
 
-### Dynamic Feasibility
-- **Curvature-constrained paths**: Generates paths with realistic turning radii
-- **Speed profile integration**: Plans velocity profiles that respect acceleration limits
-- **Gear-aware planning**: Considers forward and reverse movement capabilities
+Pivtoraiko & Kelly, Generating Near-Minimal Spanning Control Sets for Constrained Motion Planning in Discrete State Spaces
+Divelbiss & Wen, Nonholonomic Path Planning with Inequality Constraints
 
-### Advanced Algorithms
-- **Clothoid paths**: Uses Euler spiral curves for smooth, natural-looking transitions
-- **G1 Hermite interpolation**: Solves for paths that match both position and tangent direction at endpoints
-- **Multi-layered projection**: Projects primitive libraries onto specific configurations
+NCPF adapts and implements this for arbitrary, non-circular agent shapes on a 3D (x, y, heading) configuration grid.
 
-## Architecture
+How it works, in short
+Bake — for a given agent shape and grid resolution, generate a control set: the minimal set of curvature-feasible primitives reachable from a cell, pruned by ring-growth and path decomposition so redundant (decomposable) primitives are dropped.
+Discretize & validate — each primitive is discretized into the grid cells it sweeps, so collision checking against the agent's real footprint is exact, not circle-approximated.
+Graph — the baked control set becomes a curvature-aware graph: nodes are (x, y, heading) cells, edges are the primitives, weighted by path cost.
+Plan & follow — a signed-speed search runs over that graph to produce a plan, and a dedicated follower agent tracks it, handling replanning and hot/cold plan swaps as the target moves.
+Screenshots
 
-The NCPF system is organized into several key modules:
+<img width="476" height="377" alt="image" src="https://github.com/user-attachments/assets/e4d47458-14e3-436b-8550-abfe5f9d3a52" />
 
-### 1. Bake Layer
-Responsible for pre-computing path primitives and configuration spaces:
-- **ControlSetBuilder**: Generates libraries of motion primitives
-- **ClothoidPathBuilder**: Creates smooth transition curves using Euler spirals
-- **NCPFMapBuilder**: Builds configuration space maps from 2D occupancy grids
+<img width="523" height="598" alt="image" src="https://github.com/user-attachments/assets/c1751b1e-cecf-4d02-9182-f6732bf2d8ef" />
 
-### 2. Domain Layer
-Defines core interfaces and implementations:
-- **IPath**: Core path interface representing pose as a function of arc length
-- **PathAgentModel**: Agent model containing path parts and cursor state
-- **ControlSet**: Library of geometric primitives organized by start direction
 
-### 3. Pipeline Layer
-Implements the search and planning algorithms:
-- **CurvateMap3D**: 3D configuration space graph for path search
-- **Projector3D**: Projects primitive libraries onto specific configurations
-- **CurvateEdgeGenerator**: Prices transitions based on time and curvature metrics
-- **PathPlanner**: Main planning component that orchestrates the search process
+<img width="434" height="386" alt="image" src="https://github.com/user-attachments/assets/a766f39a-4ef0-4751-9b30-49487334ed2f" />
 
-### 4. Agent Layer
-High-level components for integrating with Unity:
-- **PathPlanner**: MonoBehaviour that wires together search components
-- **PathFollowAgent**: Executes planned paths in the Unity environment
-- **BehaviorBus**: Manages behavioral state during path execution
+<img width="750" height="352" alt="image" src="https://github.com/user-attachments/assets/35691fb9-0272-4354-a823-47776170857b" />
 
-## How It Works
+Architecture
 
-1. **Configuration Space Generation**: The system first builds a 3D configuration space (x, y, θ) from the 2D environment map, accounting for the agent's shape and orientation.
+See ARCHITECTURE.md for the assembly layout, layer rules, and where each piece of the pipeline lives.
+I also use https://github.com/gregoryneal/ClothoidX to solve the G1 problem and describe the curvate function.
 
-2. **Primitive Library Creation**: Motion primitives (basic path segments) are pre-computed using clothoid curves, organized by starting direction.
+Status
 
-3. **Graph Construction**: A search graph is constructed where nodes represent configurations and edges represent feasible transitions.
+(work in progress — add build/version/license badges here once decided)
 
-4. **Path Search**: A modified A* algorithm searches for the optimal path through the configuration space, considering both geometric feasibility and dynamic costs.
+Warning
 
-5. **Path Optimization**: The resulting path is refined and converted into executable commands for the agent.
-
-## Use Cases
-
-- **Autonomous Vehicles**: Planning realistic driving paths that account for vehicle dimensions and turning capabilities
-- **Robotics**: Navigation for robots with non-circular footprints in constrained environments
-- **Industrial Automation**: Precise object placement and movement in manufacturing settings
-- **Game AI**: Realistic NPC movement that considers character dimensions and movement constraints
-
-## Advantages Over Traditional Pathfinding
-
-- **Realistic Geometry**: No more circle approximations that lead to collisions or unreachable targets
-- **Dynamic Feasibility**: Paths are guaranteed to be executable by the agent's physical capabilities
-- **Smooth Transitions**: Clothoid-based paths provide natural-looking movement
-- **Orientation Control**: Explicit handling of object heading throughout the path
-- **Performance**: Pre-computation and caching optimize runtime performance
-
-## Getting Started
-
-(TODO: Add setup and usage instructions here)
-
-## Documentation
-
-Detailed documentation for each component can be found in the Docs folder:
-- [Bake Documentation](Assets/Logic/NCPF/Docs/Bake)
-- [Domain Documentation](Assets/Logic/NCPF/Docs/Domain)
-- [Pipeline Documentation](Assets/Logic/NCPF/Docs/Pipeline)
-- [Shared Documentation](Assets/Logic/NCPF/Docs/Shared)
-
-## Contributing
-
-(TODO: Add contribution guidelines here)
+if you get divide by zero exeption
+Pls execute on scene NCPFMap -> NCPFMapBuilder->Build(in context menu) to generate map
