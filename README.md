@@ -31,16 +31,22 @@ Screenshots
 
 <img width="750" height="352" alt="image" src="https://github.com/user-attachments/assets/35691fb9-0272-4354-a823-47776170857b" />
 
+Documentation
+
+- [Getting Started](Assets/Docs/GettingStarted.md) — from an empty scene to an agent driving toward a target.
+- [Architecture](Assets/Docs/Architecture.md) — the assembly layout, layer rules, and where each piece of the pipeline lives.
+- [Documentation home](Assets/Docs/README.md) — every page, grouped by architecture.
+- [FAQ](Assets/Docs/FAQ.md) — common problems and how to fix them.
+
 Architecture
 
-See ARCHITECTURE.md for the assembly layout, layer rules, and where each piece of the pipeline lives.
+See [Architecture](Assets/Docs/Architecture.md) for the assembly layout, layer rules, and where each piece of the pipeline lives.
 I also use https://github.com/gregoryneal/ClothoidX to solve the G1 problem and describe the curvate function.
 
 Status
 
 (work in progress — add build/version/license badges here once decided)
 
-Warning
+Troubleshooting
 
-if you get divide by zero exeption
-Pls execute on scene NCPFMap -> NCPFMapBuilder->Build(in context menu) to generate map
+Getting a DivideByZeroException or another problem? See the [FAQ](Assets/Docs/FAQ.md).

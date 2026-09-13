@@ -2,6 +2,9 @@ using NCPF.Bake.Application;
 using NCPF.Domain;
 using NCPF.Shared.Presentation;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace NCPF.Bake.Presentation
 {
@@ -41,6 +44,7 @@ namespace NCPF.Bake.Presentation
             SpacedMap3D map3D = new SpacedMap3D(_grid, _mapContainer.Read());
             _controlSet = _bakeService.Bake(map3D, _maxRadius, _lengthMultiplier, _positionTube, _angleTube, _minTurnRadius);
             _controlSetContainer.Write(_controlSet, map3D);
+            Persist();
         }
 
         [ContextMenu("Bake Layer")]
@@ -54,6 +58,16 @@ namespace NCPF.Bake.Presentation
             _controlSet = new ControlSet<IPath>();
             _controlSet.LoadLayer(_angleLayer, layer);
             _controlSetContainer.Write(_controlSet, map3D);
+            Persist();
+        }
+
+        /// <summary>Write only changes the asset in memory; without this the bake is gone after the project reloads.</summary>
+        private void Persist()
+        {
+#if UNITY_EDITOR
+            EditorUtility.SetDirty(_controlSetContainer);
+            AssetDatabase.SaveAssets();
+#endif
         }
 
         private void OnDrawGizmos()

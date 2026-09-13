@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72a2ca531b805384baa1ad64345bb745, type: 3}
   m_Name: NCPFSettings
   m_EditorClassIdentifier: NCPF.Config::NCPFSettings
+  CombineDependencies: 1
