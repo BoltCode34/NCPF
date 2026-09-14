@@ -26,27 +26,33 @@ Control set
 
 The baked library of primitives from one cell: every curve ends exactly on a lattice node, and none of them can be assembled from shorter ones.
 
-IMAGE_CONTROL_SET
+<img width="391" height="312" alt="Снимок экрана 2026-09-14 231655" src="https://github.com/user-attachments/assets/06437ecf-7e7e-41c1-85ca-d236dacc9722" />
 
 Single agent
 
 One agent replanning toward a moving target through a cluttered level; the drawn bodies are the agent's footprint along the planned path.
 
-IMAGE_SINGLE_AGENT
+<img width="610" height="347" alt="Снимок экрана 2026-09-14 231903" src="https://github.com/user-attachments/assets/9a6d50bc-1804-45ce-ab17-529035062064" />
 
-VIDEO_SINGLE_AGENT
+
+https://github.com/user-attachments/assets/9758919a-841d-4320-98f9-ca07b5b690bf
+
 
 Narrow passages: I-beam profile
 
 An I-beam is wider than the gaps in the walls, so it has to turn to get through. Its footprint is a composite of the web and both flanges, so the planner checks the real profile at every heading and finds the manoeuvre a circle-based planner would miss.
 
-VIDEO_IBEAM
+
+https://github.com/user-attachments/assets/50f5ba15-d10b-4e3f-b4ce-adb23d143686
+
 
 Many agents
 
 Several planners in one scene share a single map and search graph, each replanning on its own.
 
-VIDEO_MULTIPLE_AGENTS
+
+https://github.com/user-attachments/assets/bf55f96e-08f2-45ea-a136-39d197cbedf6
+
 
 Documentation
 
