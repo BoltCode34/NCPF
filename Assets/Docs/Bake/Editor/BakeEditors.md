@@ -12,11 +12,11 @@ Replaces the Inspector of any [MapAsset](../../Shared/MapAsset.md), including [M
 
 It reads the concrete asset's fields by reflection, so the Editor assembly does not need to reference `NCPF.Config`.
 
-## RectangularConfigEditor
+## AgentConfigEditor
 
-`RectangularConfigEditor.cs`
+`AgentConfigEditor.cs`
 
-Adds a preview to [RectangularConfig](../Presentation/RectangularConfig.md): the body as the grid of cells it will be baked as, with the anchor cell highlighted. The anchor cell is the one placed on the agent's position, so it must match the point your agent's GameObject is moved by.
+Adds a preview to every [AgentConfig](../../Shared/AgentConfig.md), including your own: the body as the grid of cells it will be baked as, with the anchor cell highlighted, at a chosen cell size and heading. The anchor cell is the one placed on the agent's position, so it must match the point your agent's GameObject is moved by. See [AgentConfig](../../Shared/AgentConfig.md#inspector-preview).
 
 ## InlineFieldDrawer
 
@@ -26,4 +26,4 @@ Draws fields marked with `[InlineField]` as a foldout whose label shows values f
 
 ## Related
 
-- [Pipeline editors](../../Pipeline/Editor/PipelineEditors.md) — the matching tools for the pipeline.
+- [Shared editors](../../Shared/Editor/SharedEditors.md) — the type picker used by both halves.

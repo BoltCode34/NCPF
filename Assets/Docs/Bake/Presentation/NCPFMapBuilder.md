@@ -17,7 +17,7 @@ To bake, right-click the component header and select **Build**.
 | Field | Purpose |
 |---|---|
 | **Map** | The [MapAsset](../../Shared/MapAsset.md) to bake into, usually a [MapContainer](../../Config/MapContainer.md). |
-| **Agent** | The body shape, an [AgentConfig](../../Shared/AgentConfig.md) such as [RectangularConfig](RectangularConfig.md). |
+| **Agent** | The body shape, an [AgentConfig](../../Shared/AgentConfig.md) such as [RectangularConfig](../../Config/RectangularConfig.md) or [CompositeConfig](../../Config/CompositeConfig.md). |
 | **Grid** | The [Unity2DGrid](../../Shared/Unity2DGrid.md) to read obstacles from. |
 | **Angle Step Count** | How many headings the map distinguishes. **Must be a multiple of 4**, because the control set is baked for one quarter of a turn and rotated into the other three. 16 (steps of 22.5°) is a good default. |
 | **Build On Awake** | Bakes again every time the scene starts. Leave it off unless your obstacles change at runtime: a bake takes noticeable time and rewrites the asset. |
@@ -41,5 +41,5 @@ Re-reads the obstacles from the grid, bakes the map for the configured body and 
 - [ControlSetBaker](ControlSetBaker.md) — the second bake step.
 - [MapBuilder](../../Domain/Collision/MapBuilder.md) — does the actual computation.
 - [MapContainer](../../Config/MapContainer.md) — stores the result; its Inspector shows a preview.
-- [RectangularConfig](RectangularConfig.md) — the standard body shape.
+- [AgentConfig](../../Shared/AgentConfig.md) — the available body shapes.
 - [Getting Started](../../GettingStarted.md) — step 3 walks through a bake.

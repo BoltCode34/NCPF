@@ -1828,7 +1828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 619b23e1d80afe44d9ed94b9e205cc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Features.Grid::Features.PathFinding.Application.Unity2DGrid
-  _drawGizmos: 1
+  _drawGizmos: 0
   _worldSize: {x: 20, y: 10}
   _obstacleMask:
     serializedVersion: 2
@@ -2804,7 +2804,7 @@ Transform:
   m_GameObject: {fileID: 1420926264}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.84, y: -3.48, z: 0}
+  m_LocalPosition: {x: -2.64, y: 1.74, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2931,7 +2931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1634201611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,10 +2948,10 @@ MonoBehaviour:
   _controlSetContainer: {fileID: 11400000, guid: 539584cc6afc7784ca0412ddfde97b8b, type: 2}
   _grid: {fileID: 1122389951}
   _draw: 1
-  _angleLayer: 2
+  _angleLayer: 0
   _maxRadius: 3
   _minTurnRadius: 0.4
-  _positionTube: 0.13
+  _positionTube: 0.16
   _angleTube: 45
   _lengthMultiplier: 1.4
 --- !u!4 &1634201612

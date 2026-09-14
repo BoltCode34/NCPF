@@ -32,7 +32,7 @@ Bakes a map with `angleStepCount` headings evenly spread over a full turn. Use a
 ## Notes
 
 - **Off-map cells count as free.** The part of a footprint that hangs past the grid's edge is not checked, so near the border the body may extend outside the grid. Surround the playable area with obstacles if that matters.
-- The body's heading field is overwritten by the bake, which is why a heading set on the shape has no effect. See [RectangularConfig](../../Bake/Presentation/RectangularConfig.md).
+- The shape's `Angle` is overwritten by the bake for every heading and reset to 0 afterwards.
 
 ## Related
 

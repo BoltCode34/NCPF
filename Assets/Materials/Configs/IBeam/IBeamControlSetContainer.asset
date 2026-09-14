@@ -1,0 +1,1563 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705f6fb96c04ed848bc6907acbfdd053, type: 3}
+  m_Name: IBeamControlSetContainer
+  m_EditorClassIdentifier: NCPF.Config::NCPF.Config.FuncControlSetContainer
+  _layers:
+  - Angle: 0
+    Paths:
+    - A: 0
+      B: 0
+      C: 0
+      D: 0
+      L: 0.19999981
+      End:
+        X: 0
+        Y: 1
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -5.044526
+      D: 5.047423
+      L: 0.5286811
+      End:
+        X: -2
+        Y: 1
+        Angle: 5
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -6.3449683
+      D: 3.8668158
+      L: 0.6018978
+      End:
+        X: -2
+        Y: 2
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -15.512036
+      D: 4.381985
+      L: 0.4532778
+      End:
+        X: -1
+        Y: 2
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -3.9879696
+      D: 2.6261036
+      L: 0.45914
+      End:
+        X: -1
+        Y: 2
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -11.899817
+      D: 2.4610882
+      L: 0.62487847
+      End:
+        X: 0
+        Y: 3
+        Angle: 14
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 11.899816
+      D: -2.4610877
+      L: 0.62487847
+      End:
+        X: 0
+        Y: 3
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 3.9879668
+      D: -2.626103
+      L: 0.45914
+      End:
+        X: 1
+        Y: 2
+        Angle: 14
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 15.512033
+      D: -4.381984
+      L: 0.4532778
+      End:
+        X: 1
+        Y: 2
+        Angle: 15
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 5.0445237
+      D: -5.0474224
+      L: 0.52868116
+      End:
+        X: 2
+        Y: 1
+        Angle: 11
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 6.344967
+      D: -3.8668153
+      L: 0.6018978
+      End:
+        X: 2
+        Y: 2
+        Angle: 13
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.036037
+      D: 4.976279
+      L: 0.9390116
+      End:
+        X: -4
+        Y: 1
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 7.036036
+      D: -4.976279
+      L: 0.9390116
+      End:
+        X: 4
+        Y: 1
+        Angle: 12
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -4.556267
+      D: 4.3181224
+      L: 1.4045551
+      End:
+        X: -6
+        Y: 0
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -9.3007
+      D: 5.0661387
+      L: 1.0894102
+      End:
+        X: -4
+        Y: 3
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 9.3007
+      D: -5.0661387
+      L: 1.0894102
+      End:
+        X: 4
+        Y: 3
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 4.549571
+      D: -4.313013
+      L: 1.4042798
+      End:
+        X: 6
+        Y: 0
+        Angle: 12
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -5.0569983
+      D: 4.3254156
+      L: 1.370761
+      End:
+        X: -6
+        Y: 1
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 5.056998
+      D: -4.3254156
+      L: 1.370761
+      End:
+        X: 6
+        Y: 1
+        Angle: 13
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -3.7094321
+      D: 4.063227
+      L: 1.6894572
+      End:
+        X: -7
+        Y: -1
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 3.709432
+      D: -4.063227
+      L: 1.6894572
+      End:
+        X: 7
+        Y: -1
+        Angle: 12
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -2.8941915
+      D: 3.8073618
+      L: 2.1187034
+      End:
+        X: -8
+        Y: -3
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -3.9283226
+      D: 4.1008797
+      L: 1.8745394
+      End:
+        X: -8
+        Y: 0
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 2.8941913
+      D: -3.8073616
+      L: 2.1187034
+      End:
+        X: 8
+        Y: -3
+        Angle: 12
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 3.9283226
+      D: -4.1008797
+      L: 1.8745394
+      End:
+        X: 8
+        Y: 0
+        Angle: 14
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0
+      D: 0
+      L: 0.19999981
+      End:
+        X: 0
+        Y: -1
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 6.344967
+      D: -3.8668153
+      L: 0.6018978
+      End:
+        X: -2
+        Y: -2
+        Angle: 13
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 5.044524
+      D: -5.0474224
+      L: 0.5286811
+      End:
+        X: -2
+        Y: -1
+        Angle: 11
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 3.9879668
+      D: -2.626103
+      L: 0.45914
+      End:
+        X: -1
+        Y: -2
+        Angle: 14
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 15.512033
+      D: -4.381984
+      L: 0.4532778
+      End:
+        X: -1
+        Y: -2
+        Angle: 15
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -11.899817
+      D: 2.4610882
+      L: 0.62487847
+      End:
+        X: 0
+        Y: -3
+        Angle: 14
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 11.899815
+      D: -2.4610875
+      L: 0.62487847
+      End:
+        X: 0
+        Y: -3
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -15.512038
+      D: 4.381985
+      L: 0.4532778
+      End:
+        X: 1
+        Y: -2
+        Angle: 1
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -3.9879708
+      D: 2.6261039
+      L: 0.45914
+      End:
+        X: 1
+        Y: -2
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -6.3449693
+      D: 3.866816
+      L: 0.6018978
+      End:
+        X: 2
+        Y: -2
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -5.044527
+      D: 5.0474234
+      L: 0.5286811
+      End:
+        X: 2
+        Y: -1
+        Angle: 5
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 7.0360365
+      D: -4.976279
+      L: 0.9390116
+      End:
+        X: -4
+        Y: -1
+        Angle: 12
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.036037
+      D: 4.9762793
+      L: 0.9390116
+      End:
+        X: 4
+        Y: -1
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 4.549571
+      D: -4.313013
+      L: 1.4042798
+      End:
+        X: -6
+        Y: 0
+        Angle: 12
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 9.3007
+      D: -5.0661383
+      L: 1.0894102
+      End:
+        X: -4
+        Y: -3
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -9.3007
+      D: 5.0661387
+      L: 1.0894102
+      End:
+        X: 4
+        Y: -3
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -4.5562673
+      D: 4.318123
+      L: 1.4045551
+      End:
+        X: 6
+        Y: 0
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 5.0569983
+      D: -4.3254156
+      L: 1.370761
+      End:
+        X: -6
+        Y: -1
+        Angle: 13
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -5.0569983
+      D: 4.3254156
+      L: 1.370761
+      End:
+        X: 6
+        Y: -1
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 3.709432
+      D: -4.063227
+      L: 1.6894572
+      End:
+        X: -7
+        Y: 1
+        Angle: 12
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -3.7094321
+      D: 4.063227
+      L: 1.6894572
+      End:
+        X: 7
+        Y: 1
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 3.9283226
+      D: -4.1008797
+      L: 1.8745394
+      End:
+        X: -8
+        Y: 0
+        Angle: 14
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 2.8941913
+      D: -3.8073616
+      L: 2.1187034
+      End:
+        X: -8
+        Y: 3
+        Angle: 12
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -3.9283228
+      D: 4.1008797
+      L: 1.8745394
+      End:
+        X: 8
+        Y: 0
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -2.8941915
+      D: 3.8073618
+      L: 2.1187034
+      End:
+        X: 8
+        Y: 3
+        Angle: 4
+      Backward: 1
+  - Angle: 1
+    Paths:
+    - A: 0
+      B: 0
+      C: -0.000010269808
+      D: -3.826837
+      L: 0.20523423
+      End:
+        X: 0
+        Y: 1
+        Angle: 15
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.000002567452
+      D: 2.7059834
+      L: 0.29024503
+      End:
+        X: -1
+        Y: 1
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -14.262637
+      D: 4.0967684
+      L: 0.5744755
+      End:
+        X: -2
+        Y: 2
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.1702676
+      D: 2.7360468
+      L: 0.5715022
+      End:
+        X: -2
+        Y: 2
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -15.512036
+      D: 2.6492767
+      L: 0.4532778
+      End:
+        X: -1
+        Y: 2
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -4.2378144
+      D: 0.9480779
+      L: 0.44743723
+      End:
+        X: -1
+        Y: 2
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 7.3617086
+      D: -0.78820115
+      L: 0.45079786
+      End:
+        X: -1
+        Y: 2
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.0000025674458
+      D: -1.9134163
+      L: 0.41046897
+      End:
+        X: 0
+        Y: 2
+        Angle: 15
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 14.340559
+      D: -3.8693604
+      L: 0.40411335
+      End:
+        X: 0
+        Y: 2
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 7.7560415
+      D: -1.8733283
+      L: 0.6410315
+      End:
+        X: -1
+        Y: 3
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0.46587348
+      D: -0.76438457
+      L: 2.64386
+      End:
+        X: 1
+        Y: 13
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0.22804667
+      D: -0.7354852
+      L: 2.961458
+      End:
+        X: 5
+        Y: 13
+        Angle: 14
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0.5071163
+      D: -0.77249485
+      L: 3.046618
+      End:
+        X: 0
+        Y: 15
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.000010269808
+      D: -3.8268368
+      L: 0.20523423
+      End:
+        X: 0
+        Y: -1
+        Angle: 15
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.000005990721
+      D: 2.7059839
+      L: 0.29024503
+      End:
+        X: 1
+        Y: -1
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.0000025674458
+      D: -1.9134161
+      L: 0.41046897
+      End:
+        X: 0
+        Y: -2
+        Angle: 15
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 14.340557
+      D: -3.8693602
+      L: 0.40411335
+      End:
+        X: 0
+        Y: -2
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -15.512038
+      D: 2.6492772
+      L: 0.4532778
+      End:
+        X: 1
+        Y: -2
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -4.237816
+      D: 0.9480783
+      L: 0.44743723
+      End:
+        X: 1
+        Y: -2
+        Angle: 1
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 7.361707
+      D: -0.7882008
+      L: 0.45079786
+      End:
+        X: 1
+        Y: -2
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -14.262638
+      D: 4.0967684
+      L: 0.5744755
+      End:
+        X: 2
+        Y: -2
+        Angle: 1
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.1702685
+      D: 2.736047
+      L: 0.5715022
+      End:
+        X: 2
+        Y: -2
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 7.7560406
+      D: -1.8733281
+      L: 0.6410315
+      End:
+        X: 1
+        Y: -3
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 0.2280466
+      D: -0.7354851
+      L: 2.9614582
+      End:
+        X: -5
+        Y: -13
+        Angle: 14
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 0.46587333
+      D: -0.76438445
+      L: 2.6438603
+      End:
+        X: -1
+        Y: -13
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 0.5071163
+      D: -0.7724948
+      L: 3.046618
+      End:
+        X: 0
+        Y: -15
+        Angle: 1
+      Backward: 1
+  - Angle: 2
+    Paths:
+    - A: 0
+      B: 0
+      C: -0.0000014192306
+      D: 3.5355375
+      L: 0.44428787
+      End:
+        X: -2
+        Y: 0
+        Angle: 6
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0
+      D: 0
+      L: 0.28284246
+      End:
+        X: -1
+        Y: 1
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -18.896908
+      D: 4.2694507
+      L: 0.45186764
+      End:
+        X: -2
+        Y: 1
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.361697
+      D: 2.530438
+      L: 0.4507974
+      End:
+        X: -2
+        Y: 1
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 3.9880018
+      D: 0.7950623
+      L: 0.45913956
+      End:
+        X: -2
+        Y: 1
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -3.9879696
+      D: -0.79506725
+      L: 0.45914
+      End:
+        X: -1
+        Y: 2
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 7.3617086
+      D: -2.5304413
+      L: 0.45079786
+      End:
+        X: -1
+        Y: 2
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 18.896896
+      D: -4.269452
+      L: 0.4518681
+      End:
+        X: -1
+        Y: 2
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.0000021288408
+      D: -3.5355327
+      L: 0.4442884
+      End:
+        X: 0
+        Y: 2
+        Angle: 14
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 5.639985
+      D: -3.645673
+      L: 0.63840914
+      End:
+        X: 0
+        Y: 3
+        Angle: 15
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 11.899816
+      D: -4.9748507
+      L: 0.62487847
+      End:
+        X: 0
+        Y: 3
+        Angle: 0
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -11.899797
+      D: 4.974847
+      L: 0.62487894
+      End:
+        X: -3
+        Y: 0
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -5.639978
+      D: 3.6456707
+      L: 0.6384097
+      End:
+        X: -3
+        Y: 0
+        Angle: 5
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -2.6638548
+      D: 3.2634118
+      L: 1.0619043
+      End:
+        X: -4
+        Y: -2
+        Angle: 7
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -8.973942
+      D: 3.809618
+      L: 0.8490401
+      End:
+        X: -4
+        Y: 1
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 8.973941
+      D: -3.8096178
+      L: 0.8490401
+      End:
+        X: -1
+        Y: 4
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.8622427
+      D: 4.6490955
+      L: 1.0910827
+      End:
+        X: -5
+        Y: -1
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -4.127411
+      D: 3.7196574
+      L: 1.6898073
+      End:
+        X: -7
+        Y: -3
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -3.345705
+      D: 3.4360797
+      L: 1.7920336
+      End:
+        X: -7
+        Y: -4
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.6604207
+      D: 3.0154274
+      L: 2.4943047
+      End:
+        X: -2
+        Y: -9
+        Angle: 8
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.5199322
+      D: 2.9514265
+      L: 2.7605026
+      End:
+        X: -1
+        Y: -10
+        Angle: 8
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.4233932
+      D: 2.9231448
+      L: 3.2613559
+      End:
+        X: 0
+        Y: -12
+        Angle: 7
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.6714194
+      D: 3.0630126
+      L: 3.2285254
+      End:
+        X: -3
+        Y: -12
+        Angle: 5
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.4460588
+      D: 2.9965284
+      L: 3.3285384
+      End:
+        X: 1
+        Y: -12
+        Angle: 7
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.4057785
+      D: 2.979952
+      L: 3.622695
+      End:
+        X: 1
+        Y: -13
+        Angle: 6
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -1.2120248
+      D: 2.7233229
+      L: 3.8142838
+      End:
+        X: 0
+        Y: -14
+        Angle: 6
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 0
+      D: 0
+      L: 0.28284246
+      End:
+        X: 1
+        Y: -1
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.0000028384611
+      D: 3.535538
+      L: 0.44428787
+      End:
+        X: 2
+        Y: 0
+        Angle: 6
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 5.639985
+      D: -3.645673
+      L: 0.63840914
+      End:
+        X: 0
+        Y: -3
+        Angle: 15
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 11.899815
+      D: -4.9748507
+      L: 0.62487847
+      End:
+        X: 0
+        Y: -3
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.0000021288408
+      D: -3.5355325
+      L: 0.4442884
+      End:
+        X: 0
+        Y: -2
+        Angle: 14
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -3.9879708
+      D: -0.7950669
+      L: 0.45914
+      End:
+        X: 1
+        Y: -2
+        Angle: 0
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 7.361707
+      D: -2.530441
+      L: 0.45079786
+      End:
+        X: 1
+        Y: -2
+        Angle: 1
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 18.896894
+      D: -4.269452
+      L: 0.4518681
+      End:
+        X: 1
+        Y: -2
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -18.89691
+      D: 4.2694507
+      L: 0.45186764
+      End:
+        X: 2
+        Y: -1
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.3616986
+      D: 2.5304384
+      L: 0.4507974
+      End:
+        X: 2
+        Y: -1
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 3.9880004
+      D: 0.7950626
+      L: 0.45913956
+      End:
+        X: 2
+        Y: -1
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -11.899798
+      D: 4.9748473
+      L: 0.62487894
+      End:
+        X: 3
+        Y: 0
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -5.6399784
+      D: 3.645671
+      L: 0.6384097
+      End:
+        X: 3
+        Y: 0
+        Angle: 5
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 8.973941
+      D: -3.8096178
+      L: 0.84904003
+      End:
+        X: 1
+        Y: -4
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -8.973942
+      D: 3.8096182
+      L: 0.8490401
+      End:
+        X: 4
+        Y: -1
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -2.663855
+      D: 3.263412
+      L: 1.0619043
+      End:
+        X: 4
+        Y: 2
+        Angle: 7
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.862243
+      D: 4.6490955
+      L: 1.0910827
+      End:
+        X: 5
+        Y: 1
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -4.127411
+      D: 3.7196574
+      L: 1.6898073
+      End:
+        X: 7
+        Y: 3
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -3.3457053
+      D: 3.43608
+      L: 1.7920336
+      End:
+        X: 7
+        Y: 4
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.6604207
+      D: 3.015427
+      L: 2.4943047
+      End:
+        X: 2
+        Y: 9
+        Angle: 8
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.5199322
+      D: 2.9514265
+      L: 2.7605026
+      End:
+        X: 1
+        Y: 10
+        Angle: 8
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.4233932
+      D: 2.9231448
+      L: 3.2613559
+      End:
+        X: 0
+        Y: 12
+        Angle: 7
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.4460588
+      D: 2.9965284
+      L: 3.3285384
+      End:
+        X: -1
+        Y: 12
+        Angle: 7
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.6714194
+      D: 3.0630126
+      L: 3.2285254
+      End:
+        X: 3
+        Y: 12
+        Angle: 5
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.4057788
+      D: 2.9799523
+      L: 3.6226947
+      End:
+        X: -1
+        Y: 13
+        Angle: 6
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -1.212025
+      D: 2.723323
+      L: 3.8142836
+      End:
+        X: 0
+        Y: 14
+        Angle: 6
+      Backward: 1
+  - Angle: 3
+    Paths:
+    - A: 0
+      B: 0
+      C: -0.0000068465383
+      D: 3.8268387
+      L: 0.20523423
+      End:
+        X: -1
+        Y: 0
+        Angle: 5
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -14.340596
+      D: 3.8693657
+      L: 0.40411288
+      End:
+        X: -2
+        Y: 0
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.0000017116346
+      D: 1.9134194
+      L: 0.41046846
+      End:
+        X: -2
+        Y: 0
+        Angle: 5
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.000002567452
+      D: -2.7059827
+      L: 0.29024503
+      End:
+        X: -1
+        Y: 1
+        Angle: 1
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.361697
+      D: 0.7881961
+      L: 0.4507974
+      End:
+        X: -2
+        Y: 1
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 4.2378488
+      D: -0.9480847
+      L: 0.4474368
+      End:
+        X: -2
+        Y: 1
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 15.512091
+      D: -2.649285
+      L: 0.45327738
+      End:
+        X: -2
+        Y: 1
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 7.1703095
+      D: -2.7360587
+      L: 0.57150227
+      End:
+        X: -2
+        Y: 2
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: 14.262676
+      D: -4.09678
+      L: 0.5744756
+      End:
+        X: -2
+        Y: 2
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -7.7560377
+      D: 1.8733295
+      L: 0.6410319
+      End:
+        X: -3
+        Y: 1
+        Angle: 2
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.22804667
+      D: 0.7354852
+      L: 2.9614582
+      End:
+        X: -13
+        Y: -5
+        Angle: 6
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.46587342
+      D: 0.76438457
+      L: 2.6438603
+      End:
+        X: -13
+        Y: -1
+        Angle: 4
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.5071164
+      D: 0.7724949
+      L: 3.046618
+      End:
+        X: -15
+        Y: 0
+        Angle: 3
+      Backward: 0
+    - A: 0
+      B: 0
+      C: -0.000013693077
+      D: 3.8268394
+      L: 0.20523423
+      End:
+        X: 1
+        Y: 0
+        Angle: 5
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.000005990721
+      D: -2.7059822
+      L: 0.29024503
+      End:
+        X: 1
+        Y: -1
+        Angle: 1
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -14.340598
+      D: 3.869366
+      L: 0.40411288
+      End:
+        X: 2
+        Y: 0
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.0000034232692
+      D: 1.9134197
+      L: 0.41046846
+      End:
+        X: 2
+        Y: 0
+        Angle: 5
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 7.1703086
+      D: -2.7360585
+      L: 0.57150227
+      End:
+        X: 2
+        Y: -2
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 14.262676
+      D: -4.09678
+      L: 0.5744756
+      End:
+        X: 2
+        Y: -2
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.3616986
+      D: 0.7881964
+      L: 0.4507974
+      End:
+        X: 2
+        Y: -1
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 4.2378473
+      D: -0.94808435
+      L: 0.4474368
+      End:
+        X: 2
+        Y: -1
+        Angle: 3
+      Backward: 1
+    - A: 0
+      B: 0
+      C: 15.51209
+      D: -2.6492846
+      L: 0.45327738
+      End:
+        X: 2
+        Y: -1
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -7.7560387
+      D: 1.8733298
+      L: 0.6410319
+      End:
+        X: 3
+        Y: -1
+        Angle: 2
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.46587348
+      D: 0.7643846
+      L: 2.6438603
+      End:
+        X: 13
+        Y: 1
+        Angle: 4
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.2280467
+      D: 0.73548526
+      L: 2.9614582
+      End:
+        X: 13
+        Y: 5
+        Angle: 6
+      Backward: 1
+    - A: 0
+      B: 0
+      C: -0.5071164
+      D: 0.7724949
+      L: 3.046618
+      End:
+        X: 15
+        Y: 0
+        Angle: 3
+      Backward: 1

@@ -9,7 +9,7 @@ A Scene view tool that shows what an agent's dynamics limits look like, without 
 Add it to any GameObject. It draws three independent gizmos, in Edit mode and in Play mode:
 
 1. **Straight ramp** — the agent accelerating from point A, cruising and braking to a stop at point B, coloured by speed, with a marker moving at the real pace. It shows how much of a straight is spent accelerating and braking.
-2. **In-place spin** — the body outline rotating around its anchor at the maximum turn rate.
+2. **In-place spin** — the body rotating around its anchor at the maximum turn rate, drawn as a translucent blue footprint with a line along the heading.
 3. **Kinematic circle** — the circle an agent moving at a given speed and turn rate would drive. Its radius is speed divided by turn rate.
 
 ## Inspector
@@ -17,7 +17,7 @@ Add it to any GameObject. It draws three independent gizmos, in Edit mode and in
 | Field | Purpose |
 |---|---|
 | **Dynamic Agent** | The limits to visualise. |
-| **Agent Shape** | The body outline, for the spin. |
+| **Agent Shape** | The body shape, for the spin. Any [AgentConfig](../../Shared/AgentConfig.md). |
 | **Draw Profile** / **Point A** / **Point B** | Enables the straight ramp and sets its ends. |
 | **Segments** | How finely the ramp is drawn. |
 | **Animate Marker** | Moves a marker along the ramp at the real pace. |

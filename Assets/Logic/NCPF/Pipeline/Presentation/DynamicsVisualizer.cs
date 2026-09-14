@@ -1,6 +1,5 @@
 using NCPF.Domain;
 using NCPF.Shared.Presentation;
-using Core.Shared.Extentions;
 using UnityEngine;
 
 namespace NCPF.Pipeline.Presentation
@@ -34,6 +33,10 @@ namespace NCPF.Pipeline.Presentation
         [SerializeField, Min(0f)] private float _circleTurnSpeed = 90f;
 
         private const int CircleSegments = 64;
+
+        private readonly FootprintGizmo _footprintGizmo = new FootprintGizmo();
+
+        private void OnDisable() => _footprintGizmo.Release();
 
         private void OnDrawGizmos()
         {
@@ -155,21 +158,19 @@ namespace NCPF.Pipeline.Presentation
             Gizmos.DrawSphere(a + dir * s, 0.07f);
         }
 
-        /// <summary>In-place spin around the body's ANCHOR at the config's w_max. The anchor→(+,+)
-        /// corner diagonal makes rotation visible on a symmetric rectangle.</summary>
+        /// <summary>In-place spin around the body's ANCHOR at the config's w_max. The heading line
+        /// makes rotation visible on a symmetric shape.</summary>
         private void DrawSpin(DynamicAgent agent, float clock)
         {
             float angle = (clock * agent.MaxAngledVelocity) % 360f;
             Vector3 position = transform.position;
 
-            Gizmos.color = Color.cyan;
-            Gizmos2D.DrawWireQuad(position, _agentShape.FootprintSize, angle, _agentShape.FootprintAnchor);
+            _footprintGizmo.Draw(_agentShape, position, angle);
 
-            Vector2 corner = new Vector2(
-                1f - _agentShape.FootprintAnchor.x,
-                1f - _agentShape.FootprintAnchor.y) * _agentShape.FootprintSize;
+            Gizmos.color = Color.cyan;
             Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
-            Gizmos.DrawLine(position, position + rotation * corner);
+            float reach = Mathf.Max(_agentShape.FootprintSize.x, _agentShape.FootprintSize.y);
+            Gizmos.DrawLine(position, position + rotation * Vector3.up * reach);
 
             Gizmos.color = Color.white;
             Gizmos.DrawSphere(position, 0.03f);

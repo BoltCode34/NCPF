@@ -3,7 +3,6 @@ using NCPF.Domain;
 using NCPF.Shared.Presentation;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using DomainConfig = NCPF.Domain.Config;
@@ -21,33 +20,8 @@ namespace NCPF.Config
     public class FuncControlSetContainer : ControlSetAsset
     {
         [SerializeField] private List<Layer> _layers = new List<Layer>();
-        [Serializable]
-        public class LayerContainer
-        {
-            public List<Layer> Layers;
-
-            public LayerContainer(List<Layer> layers)
-            {
-                Layers = layers;
-            }
-        }
         public int LayersCount => _layers.Count;
         public int AngleCount => _layers.Max(layer => layer.Angle) + 1;
-        [ContextMenu("SaveToJson")]
-        public void SaveToJson()
-        {
-            LayerContainer container = new LayerContainer(_layers);
-            string json = JsonUtility.ToJson(container);
-            File.WriteAllText(UnityEngine.Application.dataPath + "/FuncControlSetConfig.json", json);
-        }
-
-        [ContextMenu("ReadFromJson")]
-        public void ReadFromJson()
-        {
-            string json = File.ReadAllText(UnityEngine.Application.dataPath + "/FuncControlSetConfig.json");
-            LayerContainer container = JsonUtility.FromJson<LayerContainer>(json);
-            _layers = container.Layers;
-        }
 
         public override void Write(ControlSet<IPath> controlSet, IGridGeometry3D space)
         {
@@ -82,7 +56,6 @@ namespace NCPF.Config
 
         public override ControlSet<IPath> Read(IGridGeometry3D space)
         {
-            EnsureLoaded();
             ControlSet<IPath> controlSet = new ControlSet<IPath>();
 
             int fullAngle = QuarterSymmetry.FullAngleCount(space);
@@ -105,19 +78,6 @@ namespace NCPF.Config
 
         public override IPath[] ReadLayer(int angle, IGridGeometry3D space)
         {
-            EnsureLoaded();
-            IPath[] layer = ReadLayerDirty(angle, space);
-
-            if (layer == null)
-            {
-                ReadFromJson();
-                layer = ReadLayerDirty(angle, space);
-            }
-            return layer;
-        }
-
-        private IPath[] ReadLayerDirty(int angle, IGridGeometry3D space)
-        {
             int fullAngle = QuarterSymmetry.FullAngleCount(space);
             int quarterAngle = Mathf.Max(1, fullAngle / 4);
             int quadrant = angle / quarterAngle;
@@ -131,12 +91,6 @@ namespace NCPF.Config
                 }
             }
             return null;
-        }
-
-        private void EnsureLoaded()
-        {
-            if (_layers == null || _layers.Count == 0)
-                ReadFromJson();
         }
 
         /// <summary>

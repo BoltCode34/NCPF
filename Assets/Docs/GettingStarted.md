@@ -6,6 +6,9 @@ NCPF is developed on Unity 6.2. If you want to see a finished setup first, open 
 
 - `Assets/Materials/Scenes/SingleAgent.unity` — one agent chasing a target.
 - `Assets/Materials/Scenes/MultipleAgent.unity` — a group of agents sharing one map and one control set.
+- `Assets/Materials/Scenes/IBeamAgent.unity` — an I-beam-shaped agent finding its way through narrow gaps.
+
+Their assets are in `Assets/Materials/Configs`: `Rectangle` for the first two scenes, `IBeam` for the third.
 
 ## Overview
 
@@ -54,6 +57,18 @@ Then add a grid that samples those colliders:
 
 The map is computed for one specific body shape, so the shape comes first.
 
+Pick the config that matches your body:
+
+| Config | Use for |
+|---|---|
+| [RectangularConfig](Config/RectangularConfig.md) | Boxes, needles, vehicles. |
+| [CircleConfig](Config/CircleConfig.md) | Round bodies. |
+| [CapsuleConfig](Config/CapsuleConfig.md) | Elongated bodies with rounded ends. |
+| [TriangleConfig](Config/TriangleConfig.md) | Arrow-like bodies. |
+| [CompositeConfig](Config/CompositeConfig.md) | Anything else, assembled from the shapes above, such as an I-beam. |
+
+This guide uses a rectangle:
+
 1. In the Project window, select **Create > NCPF > RectangularConfig**.
 2. Set the fields:
 
@@ -62,9 +77,7 @@ The map is computed for one specific body shape, so the shape comes first.
 | **Size** | Width and length of the body, in metres. The sample agent is 0.16 × 2 m. |
 | **Anchor** | The point the body is moved by, as a fraction of the rectangle: `(0.5, 0.5)` is the centre, `(0.5, 1)` is the middle of the front edge. This must match the pivot of your agent's GameObject. |
 
-Leave **Orientation** at 0: it currently has no effect, because the map bake rotates the body through every heading on its own.
-
-The Inspector shows a preview of the body as a grid of cells, with the anchor cell highlighted. See [RectangularConfig](Bake/Presentation/RectangularConfig.md).
+The Inspector shows a preview of the body as a grid of cells, with the anchor cell highlighted. Set **Preview Cell Size** to your grid's cell size to see exactly what will be baked. See [AgentConfig](Shared/AgentConfig.md#inspector-preview).
 
 > **Important:** The anchor is baked into the map. If you change it, bake the map again.
 

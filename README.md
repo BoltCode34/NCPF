@@ -20,16 +20,33 @@ Bake — for a given agent shape and grid resolution, generate a control set: th
 Discretize & validate — each primitive is discretized into the grid cells it sweeps, so collision checking against the agent's real footprint is exact, not circle-approximated.
 Graph — the baked control set becomes a curvature-aware graph: nodes are (x, y, heading) cells, edges are the primitives, weighted by path cost.
 Plan & follow — a signed-speed search runs over that graph to produce a plan, and a dedicated follower agent tracks it, handling replanning and hot/cold plan swaps as the target moves.
-Screenshots
+Demos
 
-<img width="476" height="377" alt="image" src="https://github.com/user-attachments/assets/e4d47458-14e3-436b-8550-abfe5f9d3a52" />
+Control set
 
-<img width="523" height="598" alt="image" src="https://github.com/user-attachments/assets/c1751b1e-cecf-4d02-9182-f6732bf2d8ef" />
+The baked library of primitives from one cell: every curve ends exactly on a lattice node, and none of them can be assembled from shorter ones.
 
+IMAGE_CONTROL_SET
 
-<img width="434" height="386" alt="image" src="https://github.com/user-attachments/assets/a766f39a-4ef0-4751-9b30-49487334ed2f" />
+Single agent
 
-<img width="750" height="352" alt="image" src="https://github.com/user-attachments/assets/35691fb9-0272-4354-a823-47776170857b" />
+One agent replanning toward a moving target through a cluttered level; the drawn bodies are the agent's footprint along the planned path.
+
+IMAGE_SINGLE_AGENT
+
+VIDEO_SINGLE_AGENT
+
+Narrow passages: I-beam profile
+
+An I-beam is wider than the gaps in the walls, so it has to turn to get through. Its footprint is a composite of the web and both flanges, so the planner checks the real profile at every heading and finds the manoeuvre a circle-based planner would miss.
+
+VIDEO_IBEAM
+
+Many agents
+
+Several planners in one scene share a single map and search graph, each replanning on its own.
+
+VIDEO_MULTIPLE_AGENTS
 
 Documentation
 

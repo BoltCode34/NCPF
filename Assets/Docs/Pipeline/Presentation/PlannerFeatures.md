@@ -67,4 +67,4 @@ The feature only creates the logic. Keep the logic itself in the pass or builder
 - [SAPass](../../Pipeline/Application/Agent/SAPass.md) — what main planners and overrides create.
 - [IGoalBuilder](../../Pipeline/Application/Search/IGoalBuilder.md) — what achievements and heuristics create.
 - [PathFeatureContainer](PathFeatureContainer.md) — turns the selected features into live logic.
-- [Pipeline editors](../Editor/PipelineEditors.md) — the dropdown that lists the features.
+- [Shared editors](../../Shared/Editor/SharedEditors.md) — the dropdown that lists the features.

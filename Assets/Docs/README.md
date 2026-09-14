@@ -48,29 +48,30 @@ Pure data and the rules for changing it. No Unity components, no scene objects.
 
 - **Core** — [IPath](Domain/Core/IPath.md), [WorldConfig](Domain/Core/WorldConfig.md), [Config](Domain/Core/Config.md), [DynamicState](Domain/Core/DynamicState.md), [DynamicAgent](Domain/Core/DynamicAgent.md), [AngleUtility](Domain/Core/AngleUtility.md), [IGraph](Domain/Core/IGraph.md)
 - **Paths** — [ClothoidPath](Domain/Paths/ClothoidPath.md), [RearFirstPath](Domain/Paths/RearFirstPath.md), [FunctionBasedPath](Domain/Paths/FunctionBasedPath.md), [BezierPath](Domain/Paths/BezierPath.md), [DiscretizedPath3D](Domain/ControlSet/DiscretizedControlSet3D.md)
-- **Collision** — [Map3D](Domain/Collision/Map3D.md), [MapBuilder](Domain/Collision/MapBuilder.md), [Agent](Domain/Collision/Agent.md)
+- **Collision** — [Map3D](Domain/Collision/Map3D.md), [MapBuilder](Domain/Collision/MapBuilder.md), [Agent](Domain/Collision/Agent.md) (Rectangle, Circle, Capsule, Triangle), [CompositeAgent](Domain/Collision/CompositeAgent.md)
 - **Control set** — [ControlSet](Domain/ControlSet/ControlSet.md), [DiscretizedControlSet3D](Domain/ControlSet/DiscretizedControlSet3D.md), [QuarterSymmetry](Domain/ControlSet/QuarterSymmetry.md)
 - **Space** — [IGridMap3D](Domain/Space/IGridMap3D.md), [PrimitivePassability](Domain/Space/PrimitivePassability.md), [TransitionData](Domain/Space/TransitionData.md)
 - **Agent** — [PathAgentModel](Domain/Agent/PathAgentModel.md), [PrimitiveWindow](Domain/Agent/PrimitiveWindow.md), [CurvatureSpeedProfile](Domain/Agent/CurvatureSpeedProfile.md), [PrimitiveAnalyzer](Domain/Agent/PrimitiveAnalyzer.md), [PathGearUtility](Domain/Agent/PathGearUtility.md), [PathLimiterBase](Domain/Agent/PathLimiterBase.md)
 
 ### Shared
 
-The storage ports and the scene grid that both halves of the package use.
+The storage ports, the scene grid and the Inspector type picker that both halves of the package use.
 
-[MapAsset](Shared/MapAsset.md), [ControlSetAsset](Shared/ControlSetAsset.md), [AgentConfig](Shared/AgentConfig.md), [NcpfSettingsAsset](Shared/NcpfSettingsAsset.md), [SpacedMap3D](Shared/SpacedMap3D.md), [Unity2DGrid](Shared/Unity2DGrid.md)
+[MapAsset](Shared/MapAsset.md), [ControlSetAsset](Shared/ControlSetAsset.md), [AgentConfig](Shared/AgentConfig.md), [NcpfSettingsAsset](Shared/NcpfSettingsAsset.md), [SpacedMap3D](Shared/SpacedMap3D.md), [Unity2DGrid](Shared/Unity2DGrid.md), [Shared editors](Shared/Editor/SharedEditors.md)
 
 ### Config
 
 The concrete assets you create in the Project window.
 
-[MapContainer](Config/MapContainer.md), [FuncControlSetContainer](Config/FuncControlSetContainer.md), [NCPFSettings](Config/NCPFSettings.md)
+- **Containers and settings** — [MapContainer](Config/MapContainer.md), [FuncControlSetContainer](Config/FuncControlSetContainer.md), [NCPFSettings](Config/NCPFSettings.md)
+- **Body shapes** — [RectangularConfig](Config/RectangularConfig.md), [CircleConfig](Config/CircleConfig.md), [CapsuleConfig](Config/CapsuleConfig.md), [TriangleConfig](Config/TriangleConfig.md), [CompositeConfig](Config/CompositeConfig.md)
 
 ### Bake
 
 Everything that runs in the Editor to produce the map and the control set.
 
 - **Application** — [ControlSetBakeService](Bake/Application/ControlSetBakeService.md), [ControlSetBuilder](Bake/Application/ControlSetBuilder.md), [LayerControlSetBuilderBase](Bake/Application/LayerControlSetBuilderBase.md), [BackwardLayerBuilder](Bake/Application/BackwardLayerBuilder.md), [IPathBuilder](Bake/Application/IPathBuilder.md), [Bake logging](Bake/Application/BakeLogging.md)
-- **Presentation** — [NCPFMapBuilder](Bake/Presentation/NCPFMapBuilder.md), [ControlSetBaker](Bake/Presentation/ControlSetBaker.md), [RectangularConfig](Bake/Presentation/RectangularConfig.md), [ControlSetBuildLogger](Bake/Presentation/ControlSetBuildLogger.md)
+- **Presentation** — [NCPFMapBuilder](Bake/Presentation/NCPFMapBuilder.md), [ControlSetBaker](Bake/Presentation/ControlSetBaker.md), [ControlSetBuildLogger](Bake/Presentation/ControlSetBuildLogger.md)
 - **Editor** — [Bake editors](Bake/Editor/BakeEditors.md)
 
 ### Pipeline
@@ -81,7 +82,6 @@ Everything that runs in Play mode to plan and drive.
 - **Search** — [PathFindingAgent](Pipeline/Application/Search/PathFindingAgent.md), [EpsilonLadderFinder](Pipeline/Application/Search/EpsilonLadderFinder.md), [GoalPathFinderBase](Pipeline/Application/Search/GoalPathFinderBase.md), [IAsyncGoalPathFinder](Pipeline/Application/Search/IAsyncGoalPathFinder.md), [IGoal](Pipeline/Application/Search/IGoal.md), [IGoalBuilder](Pipeline/Application/Search/IGoalBuilder.md), [PlanGeometry](Pipeline/Application/Search/PlanGeometry.md), [DiscretizedControlSet3DConverter](Pipeline/Application/Search/DiscretizedControlSet3DConverter.md), [DijkstraHeuristicBuilder](Pipeline/Application/Search/DijkstraHeuristicBuilder.md), [DirectDistHeuristicsBuilder](Pipeline/Application/Search/DirectDistHeuristicsBuilder.md), [PointCellAchivementBuilder](Pipeline/Application/Search/PointCellAchivementBuilder.md), [RingAchivementBuilder](Pipeline/Application/Search/RingAchivementBuilder.md)
 - **Space** — [ICurvateGraph](Pipeline/Application/Space/ICurvateGraph.md), [CurvateMap3D](Pipeline/Application/Space/CurvateMap3D.md), [ITransitionGenerator](Pipeline/Application/Space/ITransitionGenerator.md), [PassabilityTransitionGenerator](Pipeline/Application/Space/PassabilityTransitionGenerator.md), [PassabilityBaker](Pipeline/Application/Space/PassabilityBaker.md), [CachedCurvateGraph](Pipeline/Application/Space/CachedCurvateGraph.md), [RearGearGraph](Pipeline/Application/Space/RearGearGraph.md), [PathOffset](Pipeline/Application/Space/PathOffset.md), [SpacedMapPV](Pipeline/Application/Space/SpacedMapPV.md), [SpacedMapAV](Pipeline/Application/Space/SpacedMapAV.md), [IPrimitivesProjector3D](Pipeline/Application/Space/IPrimitivesProjector3D.md)
 - **Presentation** — [PathPlanner](Pipeline/Presentation/PathPlanner.md), [NcpfGraphComposer](Pipeline/Presentation/NcpfGraphComposer.md), [NcpfPlannerBootstrap](Pipeline/Presentation/NcpfPlannerBootstrap.md), [MulPlannerDependencyResolver](Pipeline/Presentation/MulPlannerDependencyResolver.md), [PathFeatureContainer](Pipeline/Presentation/PathFeatureContainer.md), [PlannerStandards](Pipeline/Presentation/PlannerStandards.md), [Planner features](Pipeline/Presentation/PlannerFeatures.md), [TravelPlannerFeature](Pipeline/Presentation/TravelPlannerFeature.md), [MotionPlannerFeature](Pipeline/Presentation/MotionPlannerFeature.md), [DynamicAgentConfig](Pipeline/Presentation/DynamicAgentConfig.md), [DynamicsVisualizer](Pipeline/Presentation/DynamicsVisualizer.md)
-- **Editor** — [Pipeline editors](Pipeline/Editor/PipelineEditors.md)
 
 ## Changing the behaviour
 
@@ -94,7 +94,7 @@ You rarely need to touch the search itself. These are the intended places to plu
 | Change what counts as reaching the target | An [AchivementFeature](Pipeline/Presentation/PlannerFeatures.md) |
 | Change how the search estimates the remaining distance | A [HeuristicFeature](Pipeline/Presentation/PlannerFeatures.md) |
 | Make some moves cost more, such as avoiding an area | A decorator over [ICurvateGraph](Pipeline/Application/Space/ICurvateGraph.md), like [RearGearGraph](Pipeline/Application/Space/RearGearGraph.md) |
-| Use a different agent shape | An [AgentConfig](Shared/AgentConfig.md) |
+| Use a different agent shape | A [CompositeConfig](Config/CompositeConfig.md) assembled from existing shapes, or your own [Agent](Domain/Collision/Agent.md) and [AgentConfig](Shared/AgentConfig.md) |
 | Use a different family of curves | An [IPathBuilder](Bake/Application/IPathBuilder.md) |
 | Store baked data somewhere else | A [MapAsset](Shared/MapAsset.md) or [ControlSetAsset](Shared/ControlSetAsset.md) |
 

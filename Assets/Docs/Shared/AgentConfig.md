@@ -6,11 +6,19 @@ The port for an agent's body shape. The map is baked for the shape an AgentConfi
 
 ## Description
 
-AgentConfig is an abstract ScriptableObject. The standard implementation is [RectangularConfig](../Bake/Presentation/RectangularConfig.md).
+AgentConfig is an abstract ScriptableObject. It serves two purposes: it creates the collision shape the map is baked with, and it tells drawing code the size and anchor of the body.
 
-It serves two purposes: it creates the collision shape the map is baked with, and it tells drawing code the size and anchor of the body.
+The package provides one implementation per shape, all in `NCPF.Config`:
 
-To support another shape, derive from AgentConfig and return your own [Agent](../Domain/Collision/Agent.md) from `GetAgent`.
+| Config | Shape |
+|---|---|
+| [RectangularConfig](../Config/RectangularConfig.md) | A rectangle. |
+| [CircleConfig](../Config/CircleConfig.md) | A circle. |
+| [CapsuleConfig](../Config/CapsuleConfig.md) | A rectangle with rounded ends. |
+| [TriangleConfig](../Config/TriangleConfig.md) | An isosceles triangle pointing forward. |
+| [CompositeConfig](../Config/CompositeConfig.md) | Any combination of the shapes above, placed and rotated in the Inspector. |
+
+To support another shape, write an [Agent](../Domain/Collision/Agent.md). If it is serializable, it can already be used as a part of a CompositeConfig; for a config of its own, derive from AgentConfig and return it from `GetAgent`.
 
 ## Key API
 
@@ -29,10 +37,19 @@ Vector2 FootprintSize { get; }
 Vector2 FootprintAnchor { get; }
 ```
 
-The body's size in metres and its anchor as a fraction of that size. Used to draw the body.
+The body's bounding rectangle in metres and its anchor as a fraction of it.
+
+## Inspector preview
+
+Every AgentConfig, including your own, gets a preview below its fields: the body as the grid of cells it will be baked as, white where it covers a cell, with the anchor cell in blue. The anchor cell is the one placed on the agent's position.
+
+| Field | Purpose |
+|---|---|
+| **Preview Cell Size** | The cell size to draw the body with. Set it to your grid's cell size to see exactly what the bake will use. Not stored in the asset. |
+| **Preview Angle** | The heading to draw the body at, in degrees. Not stored in the asset. |
 
 ## Related
 
-- [RectangularConfig](../Bake/Presentation/RectangularConfig.md) — the standard implementation.
-- [Agent](../Domain/Collision/Agent.md) — the collision shape.
+- [Agent](../Domain/Collision/Agent.md) — the collision shapes.
 - [NCPFMapBuilder](../Bake/Presentation/NCPFMapBuilder.md) — bakes the map for the shape.
+- [PathPlanner](../Pipeline/Presentation/PathPlanner.md) — draws the body along the plan.

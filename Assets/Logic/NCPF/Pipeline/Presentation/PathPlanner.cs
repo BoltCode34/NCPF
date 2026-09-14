@@ -3,7 +3,6 @@ using NCPF.Domain;
 using NCPF.Shared.Presentation;
 using System.Collections.Generic;
 using UnityEngine;
-using Core.Shared.Extentions;
 
 namespace NCPF.Pipeline.Presentation
 {
@@ -75,6 +74,7 @@ namespace NCPF.Pipeline.Presentation
         private PathAgentPipeline _brain;
         private PathAgentContext _context;
         private TargetRefHolder _targetRef;
+        private readonly FootprintGizmo _footprintGizmo = new FootprintGizmo();
 
         public ITarget Target
         {
@@ -100,6 +100,8 @@ namespace NCPF.Pipeline.Presentation
             if (_standards == null) _standards = new PlannerStandards();
             if (_composer == null) _composer = new NcpfGraphComposer();
         }
+
+        private void OnDisable() => _footprintGizmo.Release();
 
         private void Start()
         {
@@ -282,7 +284,7 @@ namespace NCPF.Pipeline.Presentation
                 if (_agentShape != null && (i - 1) % bodyEvery == 0)
                 {
                     Gizmos.color = Color.cyan;
-                    Gizmos2D.DrawWireQuad(next.Position, _agentShape.FootprintSize, next.Angle, _agentShape.FootprintAnchor);
+                    _footprintGizmo.Draw(_agentShape, next.Position, next.Angle);
                     Gizmos.DrawSphere(next.Position, 0.05f);
                 }
                 last = next;

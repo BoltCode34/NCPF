@@ -1,148 +1,55 @@
-using Core.Foundation;
+using System;
 using UnityEngine;
 
 namespace NCPF.Domain
 {
-    /// <summary>
-    /// Rectangular agent shape: width and height in metres, oriented by
-    /// <see cref="Agent.Angle"/>. The footprint is an odd NxN boolean grid
-    /// sized from the diagonal so it is the same for every rotation.
-    /// </summary>
+    /// <summary>Rectangular agent shape: width and height in metres, height along the heading.</summary>
+    [Serializable]
     public class Rectangle : Agent
     {
-        public float Width;
-        public float Height;
+        public float Width = 1f;
+        public float Height = 1f;
 
-        /// <summary>
-        /// The tow point as a fraction of the rectangle: (0, 0) is the lower
-        /// left corner, (1, 1) the upper right, (0.5, 0.5) the centre. Whoever
-        /// tows the agent defines it — a needle driven by its tip uses (0.5, 1).
-        /// Changing it moves only the point the footprint is laid out from,
-        /// never the footprint matrix itself.
-        /// </summary>
-        public Vector2 Anchor;
-
-        public static readonly Vector2 CenterAnchor = new Vector2(0.5f, 0.5f);
+        public Rectangle()
+        {
+        }
 
         public Rectangle(float width, float height, float cellSize = 1f, Vector2? anchor = null)
-            : base(cellSize)
+            : base(cellSize, anchor)
         {
             Width = width;
             Height = height;
-            Anchor = anchor ?? CenterAnchor;
         }
 
-        private int MatrixSize()
+        public override Vector2 Size => new Vector2(Mathf.Max(0f, Width), Mathf.Max(0f, Height));
+
+        protected internal override bool Covers(Vector2 cellCenter, Vector2 axisX, Vector2 axisY, float halfCell)
         {
-            float diagonal = Mathf.Sqrt(Width * Width + Height * Height);
-            int size = Mathf.CeilToInt(diagonal / CellSize) + 1;
-            if ((size & 1) == 0)
-            {
-                size++;
-            }
-            return size;
-        }
+            float halfW = Mathf.Max(0f, Width) * 0.5f;
+            float halfH = Mathf.Max(0f, Height) * 0.5f;
 
-        /// <summary>
-        /// The anchor cell in the footprint matrix, rotated with the body
-        /// through the same axes the footprint itself uses — otherwise the
-        /// error wanders from layer to layer.
-        /// </summary>
-        public override Int2 GetLocalAnchor()
-        {
-            if (Mathf.Approximately(Anchor.x, 0.5f) && Mathf.Approximately(Anchor.y, 0.5f))
-            {
-                return base.GetLocalAnchor();
-            }
+            float obbOnWorldX = Mathf.Abs(axisX.x) * halfW + Mathf.Abs(axisY.x) * halfH;
+            float obbOnWorldY = Mathf.Abs(axisX.y) * halfW + Mathf.Abs(axisY.y) * halfH;
 
-            int size = MatrixSize();
-            float indexCenter = (size - 1) * 0.5f;
-
-            float angleRad = Angle * Mathf.Deg2Rad;
-            Vector2 ux = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
-            Vector2 uy = new Vector2(-Mathf.Sin(angleRad), Mathf.Cos(angleRad));
-
-            Vector2 offset = ux * ((Anchor.x - 0.5f) * Width)
-                           + uy * ((Anchor.y - 0.5f) * Height);
-
-            int x = Mathf.RoundToInt(indexCenter + offset.x / CellSize);
-            int y = Mathf.RoundToInt(indexCenter + offset.y / CellSize);
-
-            return new Int2(
-                Mathf.Clamp(x, 0, size - 1),
-                Mathf.Clamp(y, 0, size - 1));
-        }
-
-        public override bool[,] GetFootPrint()
-        {
-            int size = MatrixSize();
-
-            bool[,] footprint = new bool[size, size];
-
-            float angleRad = Angle * Mathf.Deg2Rad;
-            Vector2 ux = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
-            Vector2 uy = new Vector2(-Mathf.Sin(angleRad), Mathf.Cos(angleRad));
-
-            float halfW = Width * 0.5f;
-            float halfH = Height * 0.5f;
-            float halfCell = CellSize * 0.5f;
-
-            float indexCenter = (size - 1) * 0.5f;
-
-            for (int y = 0; y < size; y++)
-            {
-                for (int x = 0; x < size; x++)
-                {
-                    Vector2 cellCenter = new Vector2((x - indexCenter) * CellSize, (y - indexCenter) * CellSize);
-
-                    if (IntersectsOrientedRectWithCell(cellCenter, ux, uy, halfW, halfH, halfCell))
-                    {
-                        footprint[x, y] = true;
-                    }
-                }
-            }
-
-            return footprint;
-        }
-
-        private static bool IntersectsOrientedRectWithCell(
-            Vector2 cellCenter,
-            Vector2 rectAxisX,
-            Vector2 rectAxisY,
-            float halfRectW,
-            float halfRectH,
-            float halfCell)
-        {
-            float tx = cellCenter.x;
-            float ty = cellCenter.y;
-
-            float aabbWorldRadius = halfCell;
-
-            float obbOnWorldX = Mathf.Abs(rectAxisX.x) * halfRectW + Mathf.Abs(rectAxisY.x) * halfRectH;
-            float obbOnWorldY = Mathf.Abs(rectAxisX.y) * halfRectW + Mathf.Abs(rectAxisY.y) * halfRectH;
-
-            if (Mathf.Abs(tx) > aabbWorldRadius + obbOnWorldX)
+            if (Mathf.Abs(cellCenter.x) > halfCell + obbOnWorldX)
             {
                 return false;
             }
 
-            if (Mathf.Abs(ty) > aabbWorldRadius + obbOnWorldY)
+            if (Mathf.Abs(cellCenter.y) > halfCell + obbOnWorldY)
             {
                 return false;
             }
 
-            float tOnRectX = Vector2.Dot(cellCenter, rectAxisX);
-            float tOnRectY = Vector2.Dot(cellCenter, rectAxisY);
+            float cellOnAxisX = halfCell * (Mathf.Abs(axisX.x) + Mathf.Abs(axisX.y));
+            float cellOnAxisY = halfCell * (Mathf.Abs(axisY.x) + Mathf.Abs(axisY.y));
 
-            float aabbOnRectX = halfCell * (Mathf.Abs(rectAxisX.x) + Mathf.Abs(rectAxisX.y));
-            float aabbOnRectY = halfCell * (Mathf.Abs(rectAxisY.x) + Mathf.Abs(rectAxisY.y));
-
-            if (Mathf.Abs(tOnRectX) > halfRectW + aabbOnRectX)
+            if (Mathf.Abs(Vector2.Dot(cellCenter, axisX)) > halfW + cellOnAxisX)
             {
                 return false;
             }
 
-            if (Mathf.Abs(tOnRectY) > halfRectH + aabbOnRectY)
+            if (Mathf.Abs(Vector2.Dot(cellCenter, axisY)) > halfH + cellOnAxisY)
             {
                 return false;
             }

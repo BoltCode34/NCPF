@@ -16,7 +16,7 @@ Check, in order:
 
 1. **The planner is wired.** [PathPlanner](Pipeline/Presentation/PathPlanner.md) builds nothing unless **Grid**, **Map Container** and **Control Set Container** are all set.
 2. **The map is baked** for the current grid. See the question above.
-3. **The control set is baked** with **Bake**, not just **Bake Layer**. **Bake Layer** overwrites the asset with a single heading. See [ControlSetBaker](Bake/Presentation/ControlSetBaker.md).
+3. **The control set is baked** with **Bake**, not just **Bake Layer**. **Bake Layer** overwrites the asset with a single heading. The control set lives only in its asset: a container that was never baked is empty, even if another container holds a set. See [ControlSetBaker](Bake/Presentation/ControlSetBaker.md).
 4. **The agent starts in a free pose.** The search returns nothing if the agent's own pose is blocked, for example when its body overlaps a wall at its current heading. Move it into open space.
 5. **There is a path within budget.** See the next question.
 
@@ -47,13 +47,13 @@ The map's heading count must be a multiple of 4. Only a quarter of the headings 
 
 ### The agent clips through corners
 
-- **The anchor does not match the pivot.** The planner moves the transform's position along the path, and the map is baked around the shape's **Anchor**. They must be the same point of the body. See [RectangularConfig](Bake/Presentation/RectangularConfig.md).
+- **The anchor does not match the pivot.** The planner moves the transform's position along the path, and the map is baked around the shape's **Anchor**. They must be the same point of the body. Check it in the shape's Inspector preview, see [AgentConfig](Shared/AgentConfig.md#inspector-preview).
 - **The shape changed but the map was not rebaked.** The map does not record which shape it is for, and nothing checks it: a planner with a map baked for another shape uses it silently. Bake the map again after changing the shape.
 - **The cell size is too coarse.** Obstacles are detected per cell. Thin walls and narrow bodies need smaller cells.
 
-### Changing Orientation on the shape does nothing
+### My body is not a rectangle
 
-That field has no effect: the bake sets the heading itself for every layer. See [RectangularConfig](Bake/Presentation/RectangularConfig.md).
+Use [CircleConfig](Config/CircleConfig.md), [CapsuleConfig](Config/CapsuleConfig.md) or [TriangleConfig](Config/TriangleConfig.md), or assemble the body from several shapes in a [CompositeConfig](Config/CompositeConfig.md). A rectangle that covers an I-beam or an L-shaped body refuses gaps the real body fits through. Bake the map again after switching.
 
 ### The agent drives outside the grid near its edges
 

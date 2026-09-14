@@ -66,7 +66,9 @@ The behaviour of the agent, picked from a dropdown. An empty slot falls back to 
 | **Time Scale** | Multiplies the time step the agent drives with. |
 | **Draw** | Draws the current plan in the Scene view. |
 | **Draw Points** / **Step Count** | Draws sample points along the plan, and how many. |
-| **Simulate** / **Sim Dt** / **Sim Max Steps** / **Body Every** | Draws a simulated drive along the plan, with the body outline every *Body Every* steps. |
+| **Simulate** / **Sim Dt** / **Sim Max Steps** / **Body Every** | Draws a simulated drive along the plan, with the body every *Body Every* steps. |
+
+The body is drawn as a translucent blue footprint of the **Agent Shape**, placed by its anchor and rotated to the simulated heading in steps of 5°. It is rasterised at a fine cell size of its own, so it shows the true outline of the shape rather than the map's cells.
 
 The **Model State** block at the bottom is read-only diagnostics mirrored from the agent model in Play mode.
 

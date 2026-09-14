@@ -60,15 +60,17 @@ Putting the halves and layers together gives the assemblies. Each has a matching
        NCPF.Bake.Presentation ──► NCPF.Shared.Presentation ◄── NCPF.Pipeline.Presentation
                    ▲                 ▲                 ▲
        NCPF.Bake.Editor         NCPF.Config         NCPF.Pipeline.Editor
+                             NCPF.Shared.Editor
 ```
 
 | Assembly | Holds |
 |---|---|
 | `NCPF.Domain` | Paths, poses, the map, the control set, the agent model. |
-| `NCPF.Shared.Presentation` | The storage ports and the scene grid that both halves use. |
-| `NCPF.Config` | The concrete assets you create in the Project window. |
+| `NCPF.Shared.Presentation` | The storage ports, the scene grid and the `SubclassSelector` attribute that both halves use. |
+| `NCPF.Shared.Editor` | The type picker drawn for `SubclassSelector` fields. |
+| `NCPF.Config` | The concrete assets you create in the Project window: containers, settings and body shapes. |
 | `NCPF.Bake.Application` / `.Presentation` / `.Editor` | The bake: services, the baking components, their Inspector tools. |
-| `NCPF.Pipeline.Application` / `.Presentation` / `.Editor` | The runtime: search and driving, the planner component, its Inspector tools. |
+| `NCPF.Pipeline.Application` / `.Presentation` / `.Editor` | The runtime: search and driving, the planner component, its Inspector tools. `NCPF.Pipeline.Editor` currently holds no scripts. |
 
 The compiler enforces the split: the bake assemblies cannot see the pipeline assemblies and the other way around, and neither application assembly can see its own half's presentation assembly. `NCPF.Shared.Presentation` is the exception both halves may use.
 
@@ -78,7 +80,7 @@ Baked data has to be stored somewhere, but the code that uses it should not care
 
 A port is an abstract ScriptableObject in `NCPF.Shared.Presentation` — [MapAsset](Shared/MapAsset.md), [ControlSetAsset](Shared/ControlSetAsset.md), [AgentConfig](Shared/AgentConfig.md), [NcpfSettingsAsset](Shared/NcpfSettingsAsset.md). Every field that needs baked data is typed as a port.
 
-The concrete assets — [MapContainer](Config/MapContainer.md), [FuncControlSetContainer](Config/FuncControlSetContainer.md), [NCPFSettings](Config/NCPFSettings.md) — live in `NCPF.Config`, and **no assembly references `NCPF.Config`**. When you drag a MapContainer into a field typed `MapAsset`, Unity binds the concrete asset for you, and every `Read` or `Write` call reaches the concrete implementation through the port.
+The concrete assets — [MapContainer](Config/MapContainer.md), [FuncControlSetContainer](Config/FuncControlSetContainer.md), [NCPFSettings](Config/NCPFSettings.md) and the body shapes such as [RectangularConfig](Config/RectangularConfig.md) and [CompositeConfig](Config/CompositeConfig.md) — live in `NCPF.Config`, and **no assembly references `NCPF.Config`**. When you drag a MapContainer into a field typed `MapAsset`, Unity binds the concrete asset for you, and every `Read` or `Write` call reaches the concrete implementation through the port.
 
 The payoff: to store maps in a different format — JSON, a binary file, a database — you add one new class to `NCPF.Config` and nothing else in the package changes or recompiles.
 

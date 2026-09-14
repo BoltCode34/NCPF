@@ -14,6 +14,8 @@ Only a quarter of the headings is stored. When the set is read, the other three 
 
 Reversing curves are stored alongside the forward ones in the same heading, marked as reversing.
 
+The set lives only in the asset itself. An asset that has not been baked is empty, and reading it returns an empty control set.
+
 ## Key API
 
 ```csharp
@@ -42,13 +44,6 @@ bool HasLayer(int angle)
 ```
 
 How many curves are stored in total, and whether a heading is stored.
-
-```csharp
-void SaveToJson()
-void ReadFromJson()
-```
-
-Export the stored curves to, and import them from, `FuncControlSetConfig.json` in the project's `Assets` folder. Useful as a backup or to move a control set between projects. Both are available from the asset's context menu.
 
 ## Related
 
