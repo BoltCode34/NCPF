@@ -1,5 +1,3 @@
-
-using Core.Foundation;
 using UnityEngine;
 
 namespace NCPF.Domain

@@ -1,4 +1,3 @@
-using Core.Foundation.Factories;
 using NCPF.Domain;
 
 namespace NCPF.Bake.Application
@@ -8,5 +7,8 @@ namespace NCPF.Bake.Application
     /// This is the bake-side contract — the bake knows nothing about dynamics
     /// (no speed, no time); the search dresses the resulting shapes later.
     /// </summary>
-    public interface IPathBuilder : IFactory<IPath, WorldConfig, WorldConfig> { }
+    public interface IPathBuilder
+    {
+        IPath Create(WorldConfig start, WorldConfig end);
+    }
 }

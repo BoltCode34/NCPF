@@ -1,4 +1,3 @@
-using Core.Foundation;
 using NCPF.Domain;
 
 namespace NCPF.Pipeline.Application

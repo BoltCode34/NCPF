@@ -1,6 +1,4 @@
-﻿using Core.Foundation;
-
-namespace NCPF.Domain
+﻿namespace NCPF.Domain
 {
     public interface IGraphPathFinder
     {

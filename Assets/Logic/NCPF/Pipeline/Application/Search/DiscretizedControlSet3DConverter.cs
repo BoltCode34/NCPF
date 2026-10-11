@@ -1,4 +1,3 @@
-using Core.Foundation.Factories;
 using NCPF.Domain;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace NCPF.Pipeline.Application
     /// every distinct cell it lands in. No time and no speed are involved — an <see cref="IPath"/> is
     /// parameterised by distance, so this is just stepping along the path and writing down the cells.
     /// </summary>
-    public class DiscretizedControlSet3DConverter : IFactory<DiscretizedControlSet3D, IGridGeometry3D, ControlSet<IPath>>
+    public class DiscretizedControlSet3DConverter
     {
         public float Step = 0.05f;
 

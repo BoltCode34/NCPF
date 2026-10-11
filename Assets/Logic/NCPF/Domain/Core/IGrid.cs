@@ -1,5 +1,3 @@
-using Core.Foundation;
-
 namespace NCPF.Domain
 {
     public interface IGrid

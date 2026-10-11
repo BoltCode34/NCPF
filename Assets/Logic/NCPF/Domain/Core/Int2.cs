@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Core.Foundation
+namespace NCPF.Domain
 {
     public struct Int2
     {

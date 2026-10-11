@@ -1,4 +1,3 @@
-using Core.Foundation;
 using System;
 
 namespace NCPF.Domain

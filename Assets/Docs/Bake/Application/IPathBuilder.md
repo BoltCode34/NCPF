@@ -8,7 +8,7 @@ Produces the curve between two poses. The path builder decides which family of c
 
 The bake asks a path builder for a curve from the origin pose to each candidate target pose. The curve must start and end exactly at the given positions and headings.
 
-`IPathBuilder` is an `IFactory<IPath, WorldConfig, WorldConfig>` from `Core.Foundation.Factories`, which gives it a single method:
+`IPathBuilder` has a single method:
 
 ```csharp
 IPath Create(WorldConfig start, WorldConfig end)
