@@ -3,7 +3,7 @@ using System;
 namespace NCPF.Pipeline.Application
 {
     /// <summary>
-    /// A cell of the (part, velocity) lattice — the PV twin of <see cref="ConfigAV"/>.
+    /// A cell of the (part, velocity) lattice.
     /// "Where" is the window part index whose ENTRY the node sits on (0 = the part under
     /// the cursor); "how fast" is a SIGNED speed bucket: the sign is the GEAR
     /// (+ nose-first, − rear-first), so a gear change between parts can only pass

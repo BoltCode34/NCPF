@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &50536182
 Transform:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &60447086
 Transform:
   m_ObjectHideFlags: 0
@@ -1100,7 +1100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &743700276
 Transform:
   m_ObjectHideFlags: 0
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   _heuristicFeature:
     rid: 2677269612414107650
   _mainPlannerFeature:
-    rid: 2677269720561352704
+    rid: 4645174181083480126
   _overrides: []
   _timeScale: 1
   _draw: 1
@@ -1305,15 +1305,16 @@ MonoBehaviour:
       data:
         _minDistance: 1
         _maxDistance: 1.2
-    - rid: 2677269720561352704
-      type: {class: TravelPlannerFeature, ns: NCPF.Pipeline.Presentation, asm: NCPF.Pipeline.Presentation}
+    - rid: 4645174181083480126
+      type: {class: LookAtTargetFeature, ns: NCPF.Pipeline.Presentation, asm: NCPF.Pipeline.Presentation}
       data:
-        _targetSpeedFactor: 1
-        _speedStrive: 0
-        _lookahead: 5
-        _speedSteps: 10
-        _planInterval: 0
-        _maxIterations: 1024
+        _lookahead: 3
+        _sampleStep: 0.15
+        _speedCount: 5
+        _maxSpan: 3
+        _maxIterations: 4000
+        _planInterval: 0.1
+        _aimSpeedFactor: 0.25
 --- !u!4 &855336403
 Transform:
   m_ObjectHideFlags: 0
@@ -1621,7 +1622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1070137449
 Transform:
   m_ObjectHideFlags: 0
@@ -1884,7 +1885,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1161852669
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,7 +2022,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1200958657
 Transform:
   m_ObjectHideFlags: 0
@@ -2463,7 +2464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1336005567
 Transform:
   m_ObjectHideFlags: 0
@@ -2600,7 +2601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1358351156
 Transform:
   m_ObjectHideFlags: 0
@@ -3123,7 +3124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1689326117
 Transform:
   m_ObjectHideFlags: 0

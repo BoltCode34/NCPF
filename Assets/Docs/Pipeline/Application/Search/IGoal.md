@@ -33,7 +33,7 @@ For the search to return the cheapest path, the estimate must never exceed the r
 
 ## Cost handlers
 
-`ICostHandler`, `ICostedGoal` and `CostedGoalBase` describe a goal that also adds a cost per node. [GoalPathFinderBase](GoalPathFinderBase.md) does not read it. To make nodes cost more, decorate the graph's weights instead — `MotionRulesGraph` in [MotionWindow](../Agent/MotionWindow.md) does exactly this with an `ICostHandler`.
+`ICostHandler`, `ICostedGoal` and `CostedGoalBase` describe a goal that also adds a cost per node. [GoalPathFinderBase](GoalPathFinderBase.md) does not read it. Nothing in the package uses them. To make nodes cost more, give the graph those weights, or decorate its weights the way [RearGearGraph](../Space/RearGearGraph.md) does.
 
 ## Related
 

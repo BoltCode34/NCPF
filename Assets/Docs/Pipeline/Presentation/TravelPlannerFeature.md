@@ -38,7 +38,7 @@ Creates a `TravelPlannerPass` for the agent in `context`, using its dynamics lim
 ## Related
 
 - [Planner features](PlannerFeatures.md) — the other features and how slots work.
-- [MotionPlannerFeature](MotionPlannerFeature.md) — the alternative main planner that also plans facing.
+- [LookAtTargetFeature](LookAtTargetFeature.md) — the alternative main planner that keeps facing the target.
 - [SpacedMapPV](../../Pipeline/Application/Space/SpacedMapPV.md) — the speed graph it searches.
 - [CurvatureSpeedProfile](../../Domain/Agent/CurvatureSpeedProfile.md) — the speed limit along one curve.
 - [PrimitiveWindow](../../Domain/Agent/PrimitiveWindow.md) — the stretch of path it plans over.

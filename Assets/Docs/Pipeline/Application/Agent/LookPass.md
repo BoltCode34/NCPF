@@ -33,11 +33,11 @@ LookPass(IStateOverride look, float wMaxDegPerSec)
 
 ## Example
 
-A feature that makes the agent watch its target while driving:
+A feature that turns the agent toward its target while driving. It does not slow down, plan the turn or check collisions; for that, use [LookAtTargetFeature](../../../Pipeline/Presentation/LookAtTargetFeature.md).
 
 ```csharp
 [Serializable]
-public class LookAtTargetFeature : PlannerOverrideFeature
+public class LookAtOverrideFeature : PlannerOverrideFeature
 {
     public override SAPass CreatePass(PathAgentContext context)
         => new LookPass(new LookAt(context.Target), context.DynamicAgent.MaxAngledVelocity);

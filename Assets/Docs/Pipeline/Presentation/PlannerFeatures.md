@@ -24,7 +24,7 @@ You can change a feature while the game runs. The running search and follower pi
 | Feature | Behaviour |
 |---|---|
 | [TravelPlannerFeature](TravelPlannerFeature.md) | Drives the path at the fastest speed its curves allow, facing along the path. |
-| [MotionPlannerFeature](MotionPlannerFeature.md) | Plans speed and facing together, switching between driving fast along the path and slowing down to face the target. |
+| [LookAtTargetFeature](LookAtTargetFeature.md) | Faces the target wherever the body fits and can turn in time, moving slowly; faces along the path and hurries everywhere else. |
 
 ### Achievements
 
@@ -46,7 +46,7 @@ Derive from one of the four base types, mark the class `[Serializable]`, give it
 
 ```csharp
 [Serializable]
-public class LookAtTargetFeature : PlannerOverrideFeature
+public class LookAtOverrideFeature : PlannerOverrideFeature
 {
     public override SAPass CreatePass(PathAgentContext context)
         => new LookPass(new LookAt(context.Target), context.DynamicAgent.MaxAngledVelocity);

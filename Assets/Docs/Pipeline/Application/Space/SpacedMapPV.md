@@ -40,4 +40,4 @@ SpacedMapPV(PrimitiveWindow window, float vTop, float aMax, int speedSteps, floa
 
 - [TravelPlannerFeature](../../../Pipeline/Presentation/TravelPlannerFeature.md) — builds and searches it.
 - [PrimitiveWindow](../../../Domain/Agent/PrimitiveWindow.md) — what it is built over.
-- [SpacedMapAV](SpacedMapAV.md) — the facing-and-speed counterpart.
+- [FacingModeMap](FacingModeMap.md) — the facing-and-speed graph of the look-at-target planner.

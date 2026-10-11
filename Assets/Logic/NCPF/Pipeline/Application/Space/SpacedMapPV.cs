@@ -5,7 +5,7 @@ using UnityEngine;
 namespace NCPF.Pipeline.Application
 {
     /// <summary>
-    /// The (part, velocity) map over the primitives window — the PV twin of <see cref="SpacedMapAV"/>.
+    /// The (part, velocity) map over the primitives window.
     /// A node is a <see cref="ConfigPV"/>: (window part entry, SIGNED speed bucket; the sign is the
     /// gear). The path is already chosen and collision-checked by the 3D search, so there is no
     /// collision dimension here — <see cref="PointFree"/> is a bounds check only. After the geometry
@@ -125,7 +125,7 @@ namespace NCPF.Pipeline.Application
     }
 
     /// <summary>Live through to the window's end — there is no destination here, the path is already
-    /// chosen; the speed plan only has to survive the horizon. Mirror of WindowEndAchivement.</summary>
+    /// chosen; the speed plan only has to survive the horizon.</summary>
     public class PrimitiveEndAchivement : IAchivementHandler
     {
         private readonly SpacedMapPV _map;
@@ -141,7 +141,7 @@ namespace NCPF.Pipeline.Application
     }
 
     /// <summary>An admissible lower bound on the remaining TIME: the arc to the window's end at the
-    /// RAW v_max. Mirror of WindowTimeHeuristic.</summary>
+    /// RAW v_max.</summary>
     public class PrimitiveTimeHeuristic : IHeuristicHandler
     {
         private readonly PrimitiveWindow _window;

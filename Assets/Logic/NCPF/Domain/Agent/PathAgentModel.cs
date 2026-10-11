@@ -79,7 +79,7 @@ namespace NCPF.Domain
 
             WorldConfig pose = _parts[0].Evaluate(0f);
             float speed = startPos.Speed * PathGearUtility.GearOf(_parts[0]) < 0f ? 0f : startPos.Speed;
-            _state = new DynamicState(pose.Position, startPos.Angle, speed, PathGearUtility.TravelAngle(_parts[0], 0f));
+            _state = new DynamicState(pose.Position, startPos.Angle, PathGearUtility.TravelAngle(_parts[0], 0f), speed);
         }
 
         /// <summary>The pipeline writes the planned state back. The model never decides it.</summary>
