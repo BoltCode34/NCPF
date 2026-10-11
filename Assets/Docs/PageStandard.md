@@ -9,8 +9,8 @@ This page is for people contributing to the documentation. If you are here to us
 All documentation lives in `Assets/Docs`. Object pages are grouped the same way the code is grouped — by assembly, then by the folder inside it:
 
 ```
-Assets/Docs/Domain/Core/IPath.md            ↔  Assets/Logic/NCPF/Domain/Core/IPath.cs
-Assets/Docs/Pipeline/Presentation/PathPlanner.md  ↔  Assets/Logic/NCPF/Pipeline/Presentation/PathPlanner.cs
+Assets/Docs/Domain/Core/IPath.md            ↔  Packages/com.boltcode34.ncpf/Domain/Core/IPath.cs
+Assets/Docs/Pipeline/Presentation/PathPlanner.md  ↔  Packages/com.boltcode34.ncpf/Pipeline/Presentation/PathPlanner.cs
 ```
 
 A type gets its own page when a user works with it or extends it. Very small types that only exist to serve one owner — a nested DTO, a marker interface, a two-field struct — are described on their owner's page instead.

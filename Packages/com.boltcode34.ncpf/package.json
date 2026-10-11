@@ -1,0 +1,23 @@
+{
+  "name": "com.boltcode34.ncpf",
+  "version": "0.1.0",
+  "displayName": "NCPF - Non-Circular Path Finder",
+  "description": "Geometric path planner for dynamic agents whose body can't be approximated by a circle. Bakes a control set of drivable motion primitives, builds a state lattice over (x, y, heading) and plans directly on it.",
+  "unity": "6000.2",
+  "license": "MIT",
+  "documentationUrl": "https://github.com/BoltCode34/NCPF/blob/main/Assets/Docs/README.md",
+  "author": {
+    "name": "BoltCode34",
+    "url": "https://github.com/BoltCode34"
+  },
+  "keywords": [
+    "pathfinding",
+    "path planning",
+    "state lattice",
+    "non-holonomic",
+    "clothoid"
+  ],
+  "dependencies": {
+    "com.unity.modules.physics2d": "1.0.0"
+  }
+}

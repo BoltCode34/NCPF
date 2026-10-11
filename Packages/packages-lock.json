@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.boltcode34.ncpf": {
+      "version": "file:com.boltcode34.ncpf",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.modules.physics2d": "1.0.0"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "12.0.2",
       "depth": 1,

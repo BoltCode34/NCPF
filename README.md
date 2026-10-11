@@ -54,6 +54,18 @@ Several planners in one scene share a single map and search graph, each replanni
 https://github.com/user-attachments/assets/bf55f96e-08f2-45ea-a136-39d197cbedf6
 
 
+Installation
+
+In Unity open **Window > Package Manager**, press **+**, choose **Install package from git URL...** and paste:
+
+```
+https://github.com/BoltCode34/NCPF.git?path=/Packages/com.boltcode34.ncpf
+```
+
+Requires Unity 6000.2 or newer. To pin a version, append a tag, for example `#v0.1.0`.
+
+This repository is also the example project: open it in Unity to get the demo scenes and configs.
+
 Documentation
 
 - [Getting Started](Assets/Docs/GettingStarted.md) — from an empty scene to an agent driving toward a target.
@@ -73,3 +85,7 @@ Status
 Troubleshooting
 
 Getting a DivideByZeroException or another problem? See the [FAQ](Assets/Docs/FAQ.md).
+
+License
+
+MIT, see [LICENSE.md](Packages/com.boltcode34.ncpf/LICENSE.md). ClothoidX keeps its own license, see [license.txt](Packages/com.boltcode34.ncpf/Domain/Clothoid/ClothoidX/license.txt).

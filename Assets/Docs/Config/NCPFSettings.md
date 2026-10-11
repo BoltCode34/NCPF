@@ -6,9 +6,9 @@ Package-wide runtime settings.
 
 ## Description
 
-Create one with **Create > NCPF > Settings**. For NCPF to find it, the asset must be named `NCPFSettings` and placed in a `Resources` folder. The package ships one at `Assets/Logic/NCPF/Resources/NCPFSettings.asset`.
+Create one with **Create > NCPF > Settings**. For NCPF to find it, the asset must be named `NCPFSettings` and placed in a `Resources` folder of your project. The package does not ship one; the example project keeps one at `Assets/Resources/NCPFSettings.asset`.
 
-The settings are optional. Without the asset, every setting keeps its default.
+The settings are optional. Without the asset, every setting keeps its default, so **Combine Dependencies** stays on.
 
 It implements the [NcpfSettingsAsset](../Shared/NcpfSettingsAsset.md) port.
 
